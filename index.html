@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rue Principale — Assurer la relève des entreprises d'ici</title>
+  <meta name="description" content="Rue Principale a pour mission d'assurer la relève, la continuité et le développement à long terme de PME québécoises performantes.">
+  <meta property="og:title" content="Rue Principale — Assurer la relève des entreprises d'ici">
+  <meta property="og:description" content="Rue Principale reprend des PME québécoises performantes avec une approche directe, humaine et à long terme.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rueprincipale.ca">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ========================================
+       RESET & BASE
+       ======================================== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      color: #2a2a28;
+      background-color: #f8f2e8;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background-color: #003399;
+      color: #f8f2e8;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ========================================
+       TOKENS
+       ======================================== */
+    :root {
+      --cream: #f8f2e8;
+      --cream-dark: #f0e8d8;
+      --nuit: #0f1a2e;
+      --nuit-light: #162240;
+      --blue: #003399;
+      --blue-light: #1a4fbf;
+      --gold: #b8922e;
+      --gold-light: #c9a33f;
+      --text-dark: #2a2a28;
+      --text-muted: #6a6a64;
+      --text-on-dark: #f8f2e8;
+      --text-on-dark-muted: #c8bfb0;
+      --border-warm: #e0d8c8;
+      --border-dark: rgba(248, 242, 232, 0.1);
+
+      --font-serif: 'Lora', Georgia, serif;
+      --font-sans: 'Outfit', -apple-system, sans-serif;
+
+      --container: 1200px;
+      --container-narrow: 860px;
+      --gutter: clamp(1.5rem, 4vw, 4rem);
+      --section-pad: clamp(5rem, 10vw, 8rem);
+    }
+
+    /* ========================================
+       LAYOUT
+       ======================================== */
+    .container {
+      width: 100%;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+
+    .container--narrow {
+      max-width: var(--container-narrow);
+    }
+
+    /* ========================================
+       TYPOGRAPHY
+       ======================================== */
+    .serif { font-family: var(--font-serif); }
+    .sans { font-family: var(--font-sans); }
+
+    .eyebrow {
+      font-family: var(--font-sans);
+      font-size: 0.6875rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+
+    .headline-xl {
+      font-family: var(--font-serif);
+      font-size: clamp(2.75rem, 7vw + 0.5rem, 7rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      font-weight: 400;
+    }
+
+    .headline-lg {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4.5vw + 0.5rem, 3.75rem);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      font-weight: 400;
+    }
+
+    .headline-md {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 2.5vw + 0.5rem, 2.5rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      font-weight: 400;
+    }
+
+    .body-lg {
+      font-size: clamp(1rem, 0.5vw + 0.875rem, 1.125rem);
+      line-height: 1.75;
+    }
+
+    .body-sm {
+      font-size: 0.9375rem;
+      line-height: 1.7;
+    }
+
+    /* ========================================
+       BUTTONS
+       ======================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-sans);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 0.9rem 2rem;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn--primary {
+      background-color: var(--blue);
+      color: #fff;
+    }
+    .btn--primary:hover {
+      background-color: var(--blue-light);
+      transform: translateY(-1px);
+    }
+
+    .btn--ghost {
+      background: transparent;
+      color: var(--text-dark);
+      border: 1px solid var(--border-warm);
+    }
+    .btn--ghost:hover {
+      border-color: var(--text-muted);
+      background: rgba(0,0,0,0.02);
+    }
+
+    .btn--ghost-dark {
+      background: transparent;
+      color: var(--text-on-dark);
+      border: 1px solid rgba(248, 242, 232, 0.2);
+    }
+    .btn--ghost-dark:hover {
+      border-color: rgba(248, 242, 232, 0.45);
+      background: rgba(248, 242, 232, 0.04);
+    }
+
+    .btn--gold {
+      background-color: var(--gold);
+      color: #fff;
+    }
+    .btn--gold:hover {
+      background-color: var(--gold-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-arrow {
+      display: inline-block;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn:hover .btn-arrow { transform: translateX(3px); }
+
+    /* ========================================
+       SCROLL REVEAL
+       ======================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-line {
+      width: 100%;
+      height: 1px;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal-line.visible {
+      transform: scaleX(1);
+    }
+
+    /* Stagger children */
+    .reveal-stagger > .reveal:nth-child(1) { transition-delay: 0s; }
+    .reveal-stagger > .reveal:nth-child(2) { transition-delay: 0.06s; }
+    .reveal-stagger > .reveal:nth-child(3) { transition-delay: 0.12s; }
+    .reveal-stagger > .reveal:nth-child(4) { transition-delay: 0.18s; }
+    .reveal-stagger > .reveal:nth-child(5) { transition-delay: 0.24s; }
+    .reveal-stagger > .reveal:nth-child(6) { transition-delay: 0.30s; }
+    .reveal-stagger > .reveal:nth-child(7) { transition-delay: 0.36s; }
+    .reveal-stagger > .reveal:nth-child(8) { transition-delay: 0.42s; }
+
+    /* ========================================
+       HEADER / NAV
+       ======================================== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.25rem 0;
+      transition: padding 0.4s ease, background-color 0.4s ease;
+    }
+
+    .header.scrolled {
+      padding: 0.75rem 0;
+      background-color: rgba(15, 26, 46, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-mark {
+      height: 28px;
+      width: auto;
+      opacity: 0.9;
+      transition: opacity 0.3s;
+    }
+    .logo-mark:hover { opacity: 1; }
+
+    .nav-links {
+      display: none;
+      list-style: none;
+      gap: 2.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .nav-links {
+        display: flex;
+      }
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+      color: rgba(248, 242, 232, 0.6);
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--text-on-dark); }
+
+    .nav-cta {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--text-on-dark);
+      padding: 0.6rem 1.5rem;
+      border: 1px solid rgba(248, 242, 232, 0.2);
+      border-radius: 100px;
+      transition: all 0.3s;
+    }
+    .nav-cta:hover {
+      border-color: rgba(248, 242, 232, 0.45);
+      background: rgba(248, 242, 232, 0.05);
+    }
+
+    /* ========================================
+       HERO
+       ======================================== */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      background-color: var(--nuit);
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: -5%;
+      background: url('images/bipin-saxena-nk3ymvfU4gM-unsplash.jpg') center/cover no-repeat;
+      opacity: 0.2;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(15, 26, 46, 0.6);
+    }
+
+    .hero-glow {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 40%, rgba(0, 51, 153, 0.2) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 30% 70%, rgba(184, 146, 46, 0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-vignette {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 50%, transparent 30%, rgba(15, 26, 46, 0.5) 100%),
+        linear-gradient(180deg, rgba(15,26,46,0.3) 0%, transparent 30%, transparent 70%, rgba(15,26,46,0.7) 100%);
+      pointer-events: none;
+    }
+
+    .hero-mark {
+      position: absolute;
+      right: 5vw;
+      top: 50%;
+      transform: translateY(-50%);
+      width: clamp(300px, 45vw, 600px);
+      opacity: 0.05;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      padding: 8rem 0 4rem;
+    }
+
+    .hero .headline-xl {
+      color: var(--text-on-dark);
+      margin-bottom: 2rem;
+      max-width: 14ch;
+    }
+
+    .hero .headline-xl em {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .hero-sub {
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-sub::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--gold);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-sub p {
+      color: var(--text-on-dark-muted);
+      font-size: clamp(0.925rem, 1vw + 0.5rem, 1.05rem);
+      line-height: 1.7;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    /* ========================================
+       SECTIONS — SHARED
+       ======================================== */
+    .section {
+      padding: var(--section-pad) 0;
+    }
+
+    .section--warm {
+      background-color: var(--cream);
+      color: var(--text-dark);
+    }
+
+    .section--warm-alt {
+      background-color: var(--cream-dark);
+      color: var(--text-dark);
+    }
+
+    .section--dark {
+      background-color: var(--nuit);
+      color: var(--text-on-dark);
+    }
+
+    .section--dark .eyebrow { color: var(--gold); }
+    .section--warm .eyebrow,
+    .section--warm-alt .eyebrow { color: var(--gold); }
+
+    .section--warm .body-lg,
+    .section--warm-alt .body-lg { color: var(--text-muted); }
+    .section--dark .body-lg { color: var(--text-on-dark-muted); }
+
+    .section-line {
+      height: 1px;
+      margin: clamp(2.5rem, 5vw, 4rem) 0;
+    }
+    .section--warm .section-line,
+    .section--warm-alt .section-line { background-color: var(--border-warm); }
+    .section--dark .section-line { background-color: var(--border-dark); }
+
+    /* ========================================
+       MISSION
+       ======================================== */
+    .mission .headline-lg {
+      max-width: 18ch;
+      margin-bottom: 1.5rem;
+    }
+
+    .mission .body-lg {
+      max-width: 52ch;
+      margin-bottom: clamp(2rem, 4vw, 3rem);
+    }
+
+    .mission-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    /* ========================================
+       PRESERVATION
+       ======================================== */
+    .preservation .headline-lg {
+      color: var(--text-on-dark);
+      max-width: 18ch;
+      margin-bottom: 1rem;
+    }
+
+    .preservation .body-lg {
+      max-width: 52ch;
+      margin-bottom: clamp(2rem, 4vw, 3rem);
+    }
+
+    .ruled-list {
+      list-style: none;
+    }
+
+    .ruled-item {
+      padding: clamp(1rem, 2vw, 1.5rem) 0;
+      border-top: 1px solid var(--border-dark);
+      display: flex;
+      gap: clamp(1rem, 2vw, 1.5rem);
+      align-items: baseline;
+    }
+
+    .ruled-item:last-child {
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .ruled-item-num {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      color: var(--gold);
+      flex-shrink: 0;
+      min-width: 2.5ch;
+      opacity: 0.5;
+    }
+
+    .section--warm .ruled-item {
+      border-color: var(--border-warm);
+    }
+    .section--warm .ruled-item:last-child {
+      border-bottom-color: var(--border-warm);
+    }
+
+    .ruled-item h3 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.1rem, 1.5vw + 0.4rem, 1.3rem);
+      line-height: 1.3;
+      font-weight: 400;
+      margin-bottom: 0.25rem;
+    }
+
+    .section--dark .ruled-item h3 { color: var(--text-on-dark); }
+    .section--warm .ruled-item h3 { color: var(--text-dark); }
+
+    .ruled-item p {
+      font-size: 0.9375rem;
+      line-height: 1.7;
+    }
+
+    .section--dark .ruled-item p { color: var(--text-on-dark-muted); }
+    .section--warm .ruled-item p { color: var(--text-muted); }
+
+    /* ========================================
+       APPROACH
+       ======================================== */
+    .approach .headline-lg {
+      max-width: 16ch;
+      margin-bottom: 1rem;
+    }
+
+    .approach .body-lg {
+      max-width: 52ch;
+      margin-bottom: clamp(2rem, 4vw, 3rem);
+    }
+
+    /* ========================================
+       PROOF (Abris-Temps)
+       ======================================== */
+    .proof-image {
+      position: relative;
+      width: 100%;
+      height: clamp(40vh, 50vh, 60vh);
+      overflow: hidden;
+    }
+
+    .proof-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .proof-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(15,26,46,0.25) 0%, rgba(15,26,46,0.85) 100%);
+    }
+
+    .proof-content {
+      position: relative;
+      z-index: 2;
+      margin-top: -4rem;
+    }
+
+    .proof-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .proof-meta span {
+      font-size: 0.75rem;
+      color: rgba(248, 242, 232, 0.45);
+      letter-spacing: 0.04em;
+    }
+
+    .proof-meta-dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: rgba(248, 242, 232, 0.2);
+    }
+
+    .proof .headline-lg {
+      color: var(--text-on-dark);
+      max-width: 15ch;
+      margin-bottom: 1.25rem;
+    }
+
+    .proof .body-lg {
+      max-width: 52ch;
+      margin-bottom: clamp(2rem, 4vw, 3rem);
+    }
+
+    /* ========================================
+       FOUNDER
+       ======================================== */
+    .founder-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(2rem, 4vw, 3rem);
+      align-items: center;
+    }
+
+    @media (min-width: 640px) {
+      .founder-grid {
+        grid-template-columns: 180px 1fr;
+      }
+    }
+
+    .founder-photo {
+      width: 180px;
+      height: 180px;
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 640px) {
+      .founder-photo { margin: 0; }
+    }
+
+    .founder-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .founder-bio .eyebrow { margin-bottom: 0.5rem; }
+
+    .founder-bio .headline-md {
+      margin-bottom: 0.75rem;
+    }
+
+    .founder-bio p {
+      color: var(--text-muted);
+      max-width: 48ch;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ========================================
+       CONTACT
+       ======================================== */
+    .contact .headline-lg {
+      max-width: 20ch;
+      color: var(--text-on-dark);
+      margin-bottom: 1.5rem;
+    }
+
+    .contact .body-lg {
+      max-width: 52ch;
+      margin-bottom: clamp(2rem, 4vw, 3rem);
+    }
+
+    .contact-email {
+      display: inline-block;
+      font-size: 0.9rem;
+      color: var(--gold);
+      letter-spacing: 0.02em;
+      margin-top: 1.5rem;
+      transition: color 0.3s;
+    }
+    .contact-email:hover { color: var(--gold-light); }
+
+    .contact-footer {
+      margin-top: clamp(4rem, 8vw, 6rem);
+      text-align: center;
+    }
+
+    .contact-footer-line {
+      height: 1px;
+      background: var(--border-dark);
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-footer p {
+      font-size: 0.8rem;
+      color: #8a8070;
+    }
+
+    /* ========================================
+       FOOTER
+       ======================================== */
+    .footer {
+      background-color: var(--nuit);
+      padding: clamp(4rem, 8vw, 6rem) 0 2rem;
+      position: relative;
+    }
+
+    .footer-top-line {
+      position: absolute;
+      top: 0;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--blue), var(--gold), var(--blue), transparent);
+      opacity: 0.3;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: clamp(3rem, 6vw, 5rem);
+    }
+
+    .footer-col-title {
+      font-size: 0.6875rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: #8a8070;
+      margin-bottom: 1rem;
+    }
+
+    .footer-col p,
+    .footer-col a {
+      font-size: 0.875rem;
+      color: var(--text-on-dark-muted);
+      line-height: 1.7;
+      transition: color 0.3s;
+    }
+
+    .footer-col a:hover { color: var(--text-on-dark); }
+
+    .footer-col nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #1a3050;
+      padding-top: 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .footer-bottom p {
+      font-size: 0.75rem;
+      color: #8a8070;
+    }
+
+    /* ========================================
+       RESPONSIVE
+       ======================================== */
+    @media (max-width: 639px) {
+      .hero-content { padding-top: 6rem; }
+      .headline-xl { font-size: clamp(2.5rem, 10vw, 3.5rem); }
+    }
+
+    /* ========================================
+       REDUCED MOTION
+       ======================================== */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+      .reveal-line { transform: scaleX(1); transition: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====== HEADER ====== -->
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="/" aria-label="Rue Principale — Accueil">
+          <img src="brand/mark-cream.svg" alt="Rue Principale" class="logo-mark">
+        </a>
+        <nav>
+          <ul class="nav-links">
+            <li><a href="/pour-proprietaires">Pour propri&eacute;taires</a></li>
+            <li><a href="/entreprises">Nos entreprises</a></li>
+            <li><a href="/notre-approche">Notre approche</a></li>
+            <li><a href="/fondateur">Fondateur</a></li>
+          </ul>
+        </nav>
+        <a href="#contact" class="nav-cta">Nous joindre</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ====== HERO ====== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-vignette" aria-hidden="true"></div>
+    <img src="brand/mark-cream.svg" alt="" class="hero-mark" aria-hidden="true">
+    <div class="container hero-content">
+      <div>
+        <h1 class="headline-xl reveal">Assurer la relève des entreprises <em>d'ici</em></h1>
+        <div class="hero-sub reveal" style="transition-delay: 0.1s;">
+          <p>Rue Principale a pour mission d'assurer la relève, la continuité et le développement à long terme de PME québécoises performantes.</p>
+        </div>
+        <div class="hero-ctas reveal" style="transition-delay: 0.18s;">
+          <a href="#contact" class="btn btn--primary">Parler de votre entreprise</a>
+          <a href="/notre-approche" class="btn btn--ghost-dark">Découvrir notre approche <span class="btn-arrow">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== MISSION ====== -->
+  <section class="section section--warm mission">
+    <div class="container container--narrow">
+      <p class="eyebrow reveal">Ce que nous faisons</p>
+      <h2 class="headline-lg reveal" style="transition-delay: 0.05s;">Vendre son entreprise ne consiste pas seulement à conclure une transaction</h2>
+      <p class="body-lg reveal" style="transition-delay: 0.1s;">Il s'agit aussi de protéger une équipe, une réputation, des relations de confiance et des années de travail. Rue Principale reprend des PME québécoises performantes avec une approche directe, humaine et à long terme.</p>
+      <div class="reveal-line section-line reveal" style="transition-delay: 0.12s;"></div>
+      <div class="mission-ctas reveal" style="transition-delay: 0.15s;">
+        <a href="/pour-proprietaires" class="btn btn--primary">En savoir plus</a>
+        <a href="#contact" class="btn btn--ghost">Planifier une conversation</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== PRESERVATION ====== -->
+  <section class="section section--dark preservation">
+    <div class="container container--narrow">
+      <p class="eyebrow reveal">Ce que nous préservons</p>
+      <h2 class="headline-lg reveal" style="transition-delay: 0.05s;">Préserver ce qui fait réellement la valeur d'une entreprise</h2>
+      <p class="body-lg reveal" style="transition-delay: 0.1s;">Lors d'une relève, nous croyons qu'il faut protéger bien plus que les résultats financiers.</p>
+      <div class="reveal-line section-line reveal" style="transition-delay: 0.12s;"></div>
+      <ul class="ruled-list reveal-stagger">
+        <li class="ruled-item reveal">
+          <span class="ruled-item-num">01</span>
+          <div>
+            <h3>Les équipes</h3>
+            <p>Parce que la continuité repose d'abord sur les personnes qui font vivre l'entreprise au quotidien.</p>
+          </div>
+        </li>
+        <li class="ruled-item reveal">
+          <span class="ruled-item-num">02</span>
+          <div>
+            <h3>La réputation</h3>
+            <p>Parce qu'une bonne entreprise s'appuie sur une confiance construite dans le temps.</p>
+          </div>
+        </li>
+        <li class="ruled-item reveal">
+          <span class="ruled-item-num">03</span>
+          <div>
+            <h3>Les relations d'affaires</h3>
+            <p>Parce que clients, fournisseurs et partenaires sont souvent au c&oelig;ur de la stabilité future.</p>
+          </div>
+        </li>
+        <li class="ruled-item reveal">
+          <span class="ruled-item-num">04</span>
+          <div>
+            <h3>Le savoir-faire</h3>
+            <p>Parce que ce qui distingue une entreprise ne se voit pas toujours dans un état financier.</p>
+          </div>
+        </li>
+        <li class="ruled-item reveal">
+          <span class="ruled-item-num">05</span>
+          <div>
+            <h3>L'ancrage local</h3>
+            <p>Parce que plusieurs PME québécoises tirent leur force de leur enracinement dans leur milieu.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ====== APPROACH ====== -->
+  <section class="section section--warm-alt approach">
+    <div class="container container--narrow">
+      <p class="eyebrow reveal">Comment ça fonctionne</p>
+      <h2 class="headline-lg reveal" style="transition-delay: 0.05s;">Un processus simple, direct et confidentiel</h2>
+      <p class="body-lg reveal" style="transition-delay: 0.1s;">Chaque conversation est unique. Nous adaptons notre rythme à votre réalité et à vos priorités.</p>
+      <div class="reveal-line section-line reveal" style="transition-delay: 0.12s;"></div>
+      <ul class="ruled-list reveal-stagger">
+        <li class="ruled-item reveal">
+          <span class="ruled-item-num">01</span>
+          <div>
+            <h3>Premier échange</h3>
+            <p>Une discussion initiale pour faire connaissance et comprendre le contexte.</p>
+          </div>
+        </li>
+        <li class="ruled-item reveal">
+          <span class="ruled-item-num">02</span>
+          <div>
+            <h3>Compréhension de l'entreprise</h3>
+            <p>Un échange plus concret sur l'activité, l'équipe, les enjeux et les priorités.</p>
+          </div>
+        </li>
+        <li class="ruled-item reveal">
+          <span class="ruled-item-num">03</span>
+          <div>
+            <h3>Évaluation du fit</h3>
+            <p>Nous déterminons s'il existe un réel alignement sur la vision, la continuité et le potentiel de développement.</p>
+          </div>
+        </li>
+        <li class="ruled-item reveal">
+          <span class="ruled-item-num">04</span>
+          <div>
+            <h3>Prochaines étapes</h3>
+            <p>Si le fit est bon, nous convenons ensemble de la façon la plus simple et la plus sérieuse d'aller plus loin.</p>
+          </div>
+        </li>
+      </ul>
+      <div class="reveal" style="margin-top: clamp(2rem, 4vw, 3rem); transition-delay: 0.3s;">
+        <a href="/notre-approche" class="btn btn--primary">En savoir plus sur notre approche <span class="btn-arrow">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== PROOF (Abris-Temps) ====== -->
+  <section class="section--dark proof" style="padding-bottom: var(--section-pad);">
+    <div class="proof-image reveal">
+      <img src="images/dillon-wanner-Geei_CUnPns-unsplash.jpg" alt="Abris-Temps — Abris extérieurs sur mesure">
+    </div>
+    <div class="container container--narrow proof-content">
+      <p class="eyebrow reveal" style="color: var(--gold);">Notre portefeuille</p>
+      <div class="proof-meta reveal" style="transition-delay: 0.05s;">
+        <span>Fondée en 1997</span>
+        <span class="proof-meta-dot" aria-hidden="true"></span>
+        <span>~1.4M$ revenus</span>
+        <span class="proof-meta-dot" aria-hidden="true"></span>
+        <span>Lévis, QC</span>
+      </div>
+      <h2 class="headline-lg reveal" style="transition-delay: 0.08s;">Une première entreprise, un engagement bien réel</h2>
+      <p class="body-lg reveal" style="transition-delay: 0.12s;">Abris-Temps est la première entreprise du portefeuille Rue Principale. Ce choix reflète notre manière de penser: reprendre des entreprises solides, utiles, bien établies et porteuses d'un potentiel de développement durable.</p>
+      <div class="reveal-line section-line reveal" style="transition-delay: 0.14s;"></div>
+      <div class="reveal" style="transition-delay: 0.18s;">
+        <a href="/entreprises/abris-temps" class="btn btn--gold">Découvrir Abris-Temps <span class="btn-arrow">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FOUNDER ====== -->
+  <section class="section section--warm founder">
+    <div class="container container--narrow">
+      <div class="reveal-line section-line reveal" style="margin-top: 0;"></div>
+      <div class="founder-grid" style="margin-top: clamp(2.5rem, 5vw, 4rem);">
+        <div class="founder-photo reveal">
+          <img src="images/annie-spratt-MChSQHxGZrQ-unsplash.jpg" alt="Frédéric Raymond, fondateur de Rue Principale">
+        </div>
+        <div class="founder-bio">
+          <p class="eyebrow reveal" style="transition-delay: 0.05s;">Le fondateur</p>
+          <h2 class="headline-md reveal" style="transition-delay: 0.08s;">Frédéric Raymond</h2>
+          <p class="body-sm reveal" style="transition-delay: 0.12s;">Entrepreneur et fondateur de Rue Principale. Parcours en finance, développement des affaires et gestion des opérations. Une ambition: bâtir un portefeuille de PME durables au Québec.</p>
+          <div class="reveal" style="transition-delay: 0.16s;">
+            <a href="/fondateur" class="btn btn--gold">Découvrir le fondateur <span class="btn-arrow">&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CONTACT ====== -->
+  <section class="section section--dark contact" id="contact">
+    <div class="container container--narrow">
+      <p class="eyebrow reveal">Première étape</p>
+      <h2 class="headline-lg reveal" style="transition-delay: 0.05s;">Une première discussion simple, confidentielle et sans pression.</h2>
+      <p class="body-lg reveal" style="transition-delay: 0.1s;">Que vous envisagiez une transition ou que vous souhaitiez simplement en discuter en toute confidentialité, la première étape reste simple: entrer en conversation.</p>
+      <div class="reveal" style="transition-delay: 0.15s;">
+        <a href="mailto:info@rueprincipale.ca" class="btn btn--gold">Parler de votre entreprise</a>
+      </div>
+      <a href="mailto:info@rueprincipale.ca" class="contact-email reveal" style="transition-delay: 0.2s;">info@rueprincipale.ca</a>
+      <div class="contact-footer">
+        <div class="contact-footer-line reveal-line reveal"></div>
+        <p class="reveal">Rue Principale, Lévis, Québec</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="footer">
+    <div class="footer-top-line" aria-hidden="true"></div>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <p class="footer-col-title">À propos</p>
+          <p>Assurer leur avenir, faire croître leur histoire.</p>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">Navigation</p>
+          <nav>
+            <a href="/">Accueil</a>
+            <a href="/pour-proprietaires">Pour propriétaires</a>
+            <a href="/entreprises">Nos entreprises</a>
+            <a href="/notre-approche">Notre approche</a>
+            <a href="/fondateur">Fondateur</a>
+          </nav>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">Contact</p>
+          <a href="mailto:info@rueprincipale.ca">info@rueprincipale.ca</a>
+          <p style="margin-top: 0.5rem;">Québec &amp; Lévis, QC, Canada</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Rue Principale. Tous droits réservés.</p>
+        <p>Québec &amp; Lévis, Québec</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====== SCRIPTS ====== -->
+  <script>
+    // Scroll reveal with IntersectionObserver
+    const reveals = document.querySelectorAll('.reveal, .reveal-line');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    reveals.forEach(el => observer.observe(el));
+
+    // Header scroll state
+    const header = document.getElementById('header');
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          header.classList.toggle('scrolled', window.scrollY > 60);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  </script>
+
+</body>
+</html>
