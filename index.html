@@ -66,8 +66,10 @@
 
       --container: 1200px;
       --container-narrow: 860px;
+      --container-wide: 1100px;
       --gutter: clamp(1.5rem, 4vw, 4rem);
       --section-pad: clamp(5rem, 10vw, 8rem);
+      --section-pad-lg: clamp(7rem, 14vw, 12rem);
     }
 
     /* ========================================
@@ -79,17 +81,12 @@
       margin: 0 auto;
       padding: 0 var(--gutter);
     }
-
-    .container--narrow {
-      max-width: var(--container-narrow);
-    }
+    .container--narrow { max-width: var(--container-narrow); }
+    .container--wide { max-width: var(--container-wide); }
 
     /* ========================================
        TYPOGRAPHY
        ======================================== */
-    .serif { font-family: var(--font-serif); }
-    .sans { font-family: var(--font-sans); }
-
     .eyebrow {
       font-family: var(--font-sans);
       font-size: 0.6875rem;
@@ -97,6 +94,18 @@
       text-transform: uppercase;
       font-weight: 500;
       margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .eyebrow::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--gold);
+      flex-shrink: 0;
     }
 
     .headline-xl {
@@ -217,20 +226,14 @@
       transform-origin: left center;
       transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
     }
+    .reveal-line.visible { transform: scaleX(1); }
 
-    .reveal-line.visible {
-      transform: scaleX(1);
-    }
-
-    /* Stagger children */
     .reveal-stagger > .reveal:nth-child(1) { transition-delay: 0s; }
     .reveal-stagger > .reveal:nth-child(2) { transition-delay: 0.06s; }
     .reveal-stagger > .reveal:nth-child(3) { transition-delay: 0.12s; }
     .reveal-stagger > .reveal:nth-child(4) { transition-delay: 0.18s; }
     .reveal-stagger > .reveal:nth-child(5) { transition-delay: 0.24s; }
     .reveal-stagger > .reveal:nth-child(6) { transition-delay: 0.30s; }
-    .reveal-stagger > .reveal:nth-child(7) { transition-delay: 0.36s; }
-    .reveal-stagger > .reveal:nth-child(8) { transition-delay: 0.42s; }
 
     /* ========================================
        HEADER / NAV
@@ -273,9 +276,8 @@
     }
 
     @media (min-width: 768px) {
-      .nav-links {
-        display: flex;
-      }
+      .nav-links { display: flex; }
+      .hamburger { display: none !important; }
     }
 
     .nav-links a {
@@ -301,6 +303,74 @@
       background: rgba(248, 242, 232, 0.05);
     }
 
+    /* Hamburger */
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 28px;
+      height: 28px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 201;
+    }
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 1.5px;
+      background: var(--text-on-dark);
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+
+    /* Mobile menu overlay */
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: var(--nuit);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+    .mobile-menu.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .mobile-menu a {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      color: var(--text-on-dark);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s ease, transform 0.4s ease, color 0.3s;
+    }
+    .mobile-menu.open a {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .mobile-menu.open a:nth-child(1) { transition-delay: 0.05s; }
+    .mobile-menu.open a:nth-child(2) { transition-delay: 0.1s; }
+    .mobile-menu.open a:nth-child(3) { transition-delay: 0.15s; }
+    .mobile-menu.open a:nth-child(4) { transition-delay: 0.2s; }
+    .mobile-menu.open a:nth-child(5) { transition-delay: 0.25s; }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    @media (min-width: 768px) {
+      .mobile-menu { display: none; }
+    }
+
     /* ========================================
        HERO
        ======================================== */
@@ -318,6 +388,7 @@
       inset: -5%;
       background: url('images/bipin-saxena-nk3ymvfU4gM-unsplash.jpg') center/cover no-repeat;
       opacity: 0.2;
+      will-change: transform;
     }
 
     .hero-bg::after {
@@ -358,19 +429,22 @@
     .hero-content {
       position: relative;
       z-index: 10;
-      padding: 8rem 0 4rem;
+      padding: 8rem 0 8rem;
     }
 
     .hero .headline-xl {
       color: var(--text-on-dark);
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
       max-width: 14ch;
+      text-shadow: 0 2px 40px rgba(15, 26, 46, 0.5);
     }
 
     .hero .headline-xl em {
       color: var(--gold);
       font-style: italic;
     }
+
+    .hero .eyebrow::before { background: var(--gold); }
 
     .hero-sub {
       max-width: 480px;
@@ -398,6 +472,35 @@
       gap: 0.75rem;
     }
 
+    /* Scroll indicator */
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(248, 242, 232, 0.3);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .hero-scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(248,242,232,0.3), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50% { opacity: 0.7; transform: scaleY(1.2); }
+    }
+
     /* ========================================
        SECTIONS — SHARED
        ======================================== */
@@ -405,20 +508,9 @@
       padding: var(--section-pad) 0;
     }
 
-    .section--warm {
-      background-color: var(--cream);
-      color: var(--text-dark);
-    }
-
-    .section--warm-alt {
-      background-color: var(--cream-dark);
-      color: var(--text-dark);
-    }
-
-    .section--dark {
-      background-color: var(--nuit);
-      color: var(--text-on-dark);
-    }
+    .section--warm { background-color: var(--cream); color: var(--text-dark); }
+    .section--warm-alt { background-color: var(--cream-dark); color: var(--text-dark); }
+    .section--dark { background-color: var(--nuit); color: var(--text-on-dark); }
 
     .section--dark .eyebrow { color: var(--gold); }
     .section--warm .eyebrow,
@@ -439,51 +531,110 @@
     /* ========================================
        MISSION
        ======================================== */
-    .mission .headline-lg {
-      max-width: 18ch;
-      margin-bottom: 1.5rem;
+    .mission .headline-lg { max-width: 18ch; margin-bottom: 1.5rem; }
+    .mission .body-lg { max-width: 52ch; margin-bottom: clamp(2rem, 4vw, 3rem); }
+    .mission-ctas { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+    /* ========================================
+       STATS
+       ======================================== */
+    .stats {
+      padding: var(--section-pad-lg) 0;
     }
 
-    .mission .body-lg {
-      max-width: 52ch;
-      margin-bottom: clamp(2rem, 4vw, 3rem);
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
     }
 
-    .mission-ctas {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
+    @media (min-width: 768px) {
+      .stats-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: clamp(2rem, 4vw, 3rem) clamp(1rem, 3vw, 2rem);
+      position: relative;
+    }
+
+    /* Vertical borders between stat items on desktop */
+    @media (min-width: 768px) {
+      .stat-item:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 20%;
+        height: 60%;
+        width: 1px;
+        background: rgba(248, 242, 232, 0.1);
+      }
+    }
+
+    /* Horizontal borders between stat items on mobile */
+    @media (max-width: 767px) {
+      .stat-item:not(:last-child) {
+        border-bottom: 1px solid rgba(248, 242, 232, 0.1);
+      }
+    }
+
+    .stat-number {
+      font-family: var(--font-serif);
+      font-size: clamp(3rem, 6vw, 5rem);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--text-on-dark);
+      margin-bottom: 0.75rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .stat-label {
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      color: var(--text-on-dark-muted);
+      line-height: 1.5;
+      max-width: 22ch;
+      margin: 0 auto;
+    }
+
+    .stat-sublabel {
+      display: block;
+      font-size: 0.8rem;
+      color: rgba(248, 242, 232, 0.35);
+      margin-top: 0.25rem;
     }
 
     /* ========================================
        PRESERVATION
        ======================================== */
-    .preservation .headline-lg {
-      color: var(--text-on-dark);
-      max-width: 18ch;
-      margin-bottom: 1rem;
-    }
+    .preservation .headline-lg { color: var(--text-on-dark); max-width: 18ch; margin-bottom: 1rem; }
+    .preservation .body-lg { max-width: 52ch; margin-bottom: clamp(2rem, 4vw, 3rem); }
 
-    .preservation .body-lg {
-      max-width: 52ch;
-      margin-bottom: clamp(2rem, 4vw, 3rem);
-    }
-
-    .ruled-list {
-      list-style: none;
-    }
+    .ruled-list { list-style: none; }
 
     .ruled-item {
-      padding: clamp(1rem, 2vw, 1.5rem) 0;
+      padding: clamp(1rem, 2vw, 1.5rem) 0.75rem;
       border-top: 1px solid var(--border-dark);
       display: flex;
       gap: clamp(1rem, 2vw, 1.5rem);
       align-items: baseline;
+      margin: 0 -0.75rem;
+      border-radius: 4px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      cursor: default;
     }
 
-    .ruled-item:last-child {
-      border-bottom: 1px solid var(--border-dark);
+    .ruled-item:last-child { border-bottom: 1px solid var(--border-dark); }
+
+    .ruled-item:hover {
+      transform: translateX(4px);
     }
+
+    .section--dark .ruled-item:hover { background: rgba(248, 242, 232, 0.03); }
+    .section--warm .ruled-item:hover,
+    .section--warm-alt .ruled-item:hover { background: rgba(0, 0, 0, 0.02); }
 
     .ruled-item-num {
       font-family: var(--font-serif);
@@ -491,15 +642,16 @@
       color: var(--gold);
       flex-shrink: 0;
       min-width: 2.5ch;
-      opacity: 0.5;
+      opacity: 0.4;
+      transition: opacity 0.3s ease;
     }
 
-    .section--warm .ruled-item {
-      border-color: var(--border-warm);
-    }
-    .section--warm .ruled-item:last-child {
-      border-bottom-color: var(--border-warm);
-    }
+    .ruled-item:hover .ruled-item-num { opacity: 1; }
+
+    .section--warm .ruled-item { border-color: var(--border-warm); }
+    .section--warm .ruled-item:last-child { border-bottom-color: var(--border-warm); }
+    .section--warm-alt .ruled-item { border-color: var(--border-warm); }
+    .section--warm-alt .ruled-item:last-child { border-bottom-color: var(--border-warm); }
 
     .ruled-item h3 {
       font-family: var(--font-serif);
@@ -510,28 +662,19 @@
     }
 
     .section--dark .ruled-item h3 { color: var(--text-on-dark); }
-    .section--warm .ruled-item h3 { color: var(--text-dark); }
+    .section--warm .ruled-item h3,
+    .section--warm-alt .ruled-item h3 { color: var(--text-dark); }
 
-    .ruled-item p {
-      font-size: 0.9375rem;
-      line-height: 1.7;
-    }
-
+    .ruled-item p { font-size: 0.9375rem; line-height: 1.7; }
     .section--dark .ruled-item p { color: var(--text-on-dark-muted); }
-    .section--warm .ruled-item p { color: var(--text-muted); }
+    .section--warm .ruled-item p,
+    .section--warm-alt .ruled-item p { color: var(--text-muted); }
 
     /* ========================================
        APPROACH
        ======================================== */
-    .approach .headline-lg {
-      max-width: 16ch;
-      margin-bottom: 1rem;
-    }
-
-    .approach .body-lg {
-      max-width: 52ch;
-      margin-bottom: clamp(2rem, 4vw, 3rem);
-    }
+    .approach .headline-lg { max-width: 16ch; margin-bottom: 1rem; }
+    .approach .body-lg { max-width: 52ch; margin-bottom: clamp(2rem, 4vw, 3rem); }
 
     /* ========================================
        PROOF (Abris-Temps)
@@ -547,6 +690,11 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .proof-image:hover img {
+      transform: scale(1.03);
     }
 
     .proof-image::after {
@@ -554,12 +702,26 @@
       position: absolute;
       inset: 0;
       background: linear-gradient(180deg, rgba(15,26,46,0.25) 0%, rgba(15,26,46,0.85) 100%);
+      pointer-events: none;
     }
 
     .proof-content {
       position: relative;
       z-index: 2;
       margin-top: -4rem;
+    }
+
+    .proof-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(2rem, 4vw, 3rem);
+    }
+
+    @media (min-width: 768px) {
+      .proof-layout {
+        grid-template-columns: 1fr 200px;
+        gap: clamp(3rem, 5vw, 5rem);
+      }
     }
 
     .proof-meta {
@@ -569,29 +731,47 @@
       gap: 0.75rem;
       margin-bottom: 1.5rem;
     }
+    .proof-meta span { font-size: 0.75rem; color: rgba(248, 242, 232, 0.45); letter-spacing: 0.04em; }
+    .proof-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: rgba(248, 242, 232, 0.2); }
 
-    .proof-meta span {
-      font-size: 0.75rem;
-      color: rgba(248, 242, 232, 0.45);
-      letter-spacing: 0.04em;
+    .proof .headline-lg { color: var(--text-on-dark); max-width: 15ch; margin-bottom: 1.25rem; }
+    .proof .body-lg { max-width: 52ch; margin-bottom: clamp(2rem, 4vw, 3rem); }
+
+    /* Stat sidebar */
+    .proof-sidebar {
+      display: flex;
+      flex-direction: row;
+      gap: 1.5rem;
     }
 
-    .proof-meta-dot {
-      width: 3px;
-      height: 3px;
-      border-radius: 50%;
-      background: rgba(248, 242, 232, 0.2);
+    @media (min-width: 768px) {
+      .proof-sidebar {
+        flex-direction: column;
+        border-left: 2px solid var(--gold);
+        padding-left: clamp(1.5rem, 2vw, 2rem);
+        gap: 2rem;
+        align-self: start;
+        margin-top: 1rem;
+      }
     }
 
-    .proof .headline-lg {
+    .proof-sidebar-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .proof-sidebar-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(248, 242, 232, 0.35);
+    }
+
+    .proof-sidebar-value {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
       color: var(--text-on-dark);
-      max-width: 15ch;
-      margin-bottom: 1.25rem;
-    }
-
-    .proof .body-lg {
-      max-width: 52ch;
-      margin-bottom: clamp(2rem, 4vw, 3rem);
     }
 
     /* ========================================
@@ -606,52 +786,56 @@
 
     @media (min-width: 640px) {
       .founder-grid {
-        grid-template-columns: 180px 1fr;
+        grid-template-columns: 280px 1fr;
       }
     }
 
     .founder-photo {
-      width: 180px;
-      height: 180px;
+      width: 280px;
+      max-width: 100%;
+      aspect-ratio: 3 / 4;
       border-radius: 8px;
       overflow: hidden;
       margin: 0 auto;
     }
 
-    @media (min-width: 640px) {
-      .founder-photo { margin: 0; }
-    }
+    @media (min-width: 640px) { .founder-photo { margin: 0; } }
 
     .founder-photo img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
+
+    .founder-photo:hover img { transform: scale(1.03); }
 
     .founder-bio .eyebrow { margin-bottom: 0.5rem; }
-
-    .founder-bio .headline-md {
-      margin-bottom: 0.75rem;
-    }
-
-    .founder-bio p {
-      color: var(--text-muted);
-      max-width: 48ch;
-      margin-bottom: 1.5rem;
-    }
+    .founder-bio .headline-md { margin-bottom: 0.75rem; }
+    .founder-bio p { color: var(--text-muted); max-width: 48ch; margin-bottom: 1.5rem; }
 
     /* ========================================
        CONTACT
        ======================================== */
+    .contact {
+      padding: var(--section-pad-lg) 0;
+    }
+
     .contact .headline-lg {
-      max-width: 20ch;
       color: var(--text-on-dark);
       margin-bottom: 1.5rem;
     }
 
     .contact .body-lg {
       max-width: 52ch;
-      margin-bottom: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 1.25rem;
+    }
+
+    .contact-precision {
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+      color: rgba(248, 242, 232, 0.3);
+      margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
     }
 
     .contact-email {
@@ -665,7 +849,7 @@
     .contact-email:hover { color: var(--gold-light); }
 
     .contact-footer {
-      margin-top: clamp(4rem, 8vw, 6rem);
+      margin-top: clamp(5rem, 10vw, 8rem);
       text-align: center;
     }
 
@@ -674,11 +858,7 @@
       background: var(--border-dark);
       margin-bottom: 1.5rem;
     }
-
-    .contact-footer p {
-      font-size: 0.8rem;
-      color: #8a8070;
-    }
+    .contact-footer p { font-size: 0.8rem; color: #8a8070; }
 
     /* ========================================
        FOOTER
@@ -697,6 +877,18 @@
       height: 1px;
       background: linear-gradient(90deg, transparent, var(--blue), var(--gold), var(--blue), transparent);
       opacity: 0.3;
+    }
+
+    .footer-watermark {
+      display: flex;
+      justify-content: center;
+      margin-bottom: clamp(3rem, 6vw, 5rem);
+    }
+
+    .footer-watermark img {
+      width: clamp(80px, 12vw, 120px);
+      height: auto;
+      opacity: 0.04;
     }
 
     .footer-grid {
@@ -722,7 +914,6 @@
       line-height: 1.7;
       transition: color 0.3s;
     }
-
     .footer-col a:hover { color: var(--text-on-dark); }
 
     .footer-col nav {
@@ -739,11 +930,7 @@
       justify-content: space-between;
       gap: 1rem;
     }
-
-    .footer-bottom p {
-      font-size: 0.75rem;
-      color: #8a8070;
-    }
+    .footer-bottom p { font-size: 0.75rem; color: #8a8070; }
 
     /* ========================================
        RESPONSIVE
@@ -757,12 +944,11 @@
        REDUCED MOTION
        ======================================== */
     @media (prefers-reduced-motion: reduce) {
-      .reveal {
-        opacity: 1;
-        transform: none;
-        transition: none;
-      }
+      .reveal { opacity: 1; transform: none; transition: none; }
       .reveal-line { transform: scaleX(1); transition: none; }
+      .hero-scroll-line { animation: none; }
+      .ruled-item { transition: none; }
+      .proof-image img, .founder-photo img { transition: none; }
       html { scroll-behavior: auto; }
     }
   </style>
@@ -773,7 +959,7 @@
   <header class="header" id="header">
     <div class="container">
       <div class="header-inner">
-        <a href="/" aria-label="Rue Principale — Accueil">
+        <a href="/" aria-label="Rue Principale">
           <img src="brand/mark-cream.svg" alt="Rue Principale" class="logo-mark">
         </a>
         <nav>
@@ -784,14 +970,26 @@
             <li><a href="/fondateur">Fondateur</a></li>
           </ul>
         </nav>
-        <a href="#contact" class="nav-cta">Nous joindre</a>
+        <a href="#contact" class="nav-cta hide-mobile">Nous joindre</a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
   </header>
 
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/pour-proprietaires" class="mobile-link">Pour propri&eacute;taires</a>
+    <a href="/entreprises" class="mobile-link">Nos entreprises</a>
+    <a href="/notre-approche" class="mobile-link">Notre approche</a>
+    <a href="/fondateur" class="mobile-link">Fondateur</a>
+    <a href="#contact" class="mobile-link">Nous joindre</a>
+  </div>
+
   <!-- ====== HERO ====== -->
   <section class="hero" id="hero">
-    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-bg" id="heroBg" aria-hidden="true"></div>
     <div class="hero-glow" aria-hidden="true"></div>
     <div class="hero-vignette" aria-hidden="true"></div>
     <img src="brand/mark-cream.svg" alt="" class="hero-mark" aria-hidden="true">
@@ -807,14 +1005,17 @@
         </div>
       </div>
     </div>
+    <div class="hero-scroll" aria-hidden="true">
+      <span class="hero-scroll-line"></span>
+    </div>
   </section>
 
   <!-- ====== MISSION ====== -->
   <section class="section section--warm mission">
     <div class="container container--narrow">
       <p class="eyebrow reveal">Ce que nous faisons</p>
-      <h2 class="headline-lg reveal" style="transition-delay: 0.05s;">Vendre son entreprise ne consiste pas seulement à conclure une transaction</h2>
-      <p class="body-lg reveal" style="transition-delay: 0.1s;">Il s'agit aussi de protéger une équipe, une réputation, des relations de confiance et des années de travail. Rue Principale reprend des PME québécoises performantes avec une approche directe, humaine et à long terme.</p>
+      <h2 class="headline-lg reveal" style="transition-delay: 0.05s;">Vendre son entreprise ne consiste pas seulement &agrave; conclure une transaction</h2>
+      <p class="body-lg reveal" style="transition-delay: 0.1s;">Il s'agit aussi de prot&eacute;ger une &eacute;quipe, une r&eacute;putation, des relations de confiance et des ann&eacute;es de travail. Rue Principale reprend des PME qu&eacute;b&eacute;coises performantes avec une approche directe, humaine et &agrave; long terme.</p>
       <div class="reveal-line section-line reveal" style="transition-delay: 0.12s;"></div>
       <div class="mission-ctas reveal" style="transition-delay: 0.15s;">
         <a href="/pour-proprietaires" class="btn btn--primary">En savoir plus</a>
@@ -823,49 +1024,39 @@
     </div>
   </section>
 
+  <!-- ====== STATS ====== -->
+  <section class="section--dark stats" id="stats">
+    <div class="container">
+      <div class="stats-grid reveal">
+        <div class="stat-item">
+          <div class="stat-number" data-count="55" data-suffix="%">0%</div>
+          <div class="stat-label">des propri&eacute;taires de PME<span class="stat-sublabel">approchent la retraite au Qu&eacute;bec</span></div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-count="34000" data-format="space">0</div>
+          <div class="stat-label">entreprises sans rel&egrave;ve<span class="stat-sublabel">identifi&eacute;e au cours des 5 prochaines ann&eacute;es</span></div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-count="3" data-prefix="1 sur ">0</div>
+          <div class="stat-label">ferme ses portes<span class="stat-sublabel">faute de repreneur qualifi&eacute;</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ====== PRESERVATION ====== -->
   <section class="section section--dark preservation">
     <div class="container container--narrow">
-      <p class="eyebrow reveal">Ce que nous préservons</p>
-      <h2 class="headline-lg reveal" style="transition-delay: 0.05s;">Préserver ce qui fait réellement la valeur d'une entreprise</h2>
-      <p class="body-lg reveal" style="transition-delay: 0.1s;">Lors d'une relève, nous croyons qu'il faut protéger bien plus que les résultats financiers.</p>
+      <p class="eyebrow reveal">Ce que nous pr&eacute;servons</p>
+      <h2 class="headline-lg reveal" style="transition-delay: 0.05s;">Pr&eacute;server ce qui fait r&eacute;ellement la valeur d'une entreprise</h2>
+      <p class="body-lg reveal" style="transition-delay: 0.1s;">Lors d'une rel&egrave;ve, nous croyons qu'il faut prot&eacute;ger bien plus que les r&eacute;sultats financiers.</p>
       <div class="reveal-line section-line reveal" style="transition-delay: 0.12s;"></div>
       <ul class="ruled-list reveal-stagger">
-        <li class="ruled-item reveal">
-          <span class="ruled-item-num">01</span>
-          <div>
-            <h3>Les équipes</h3>
-            <p>Parce que la continuité repose d'abord sur les personnes qui font vivre l'entreprise au quotidien.</p>
-          </div>
-        </li>
-        <li class="ruled-item reveal">
-          <span class="ruled-item-num">02</span>
-          <div>
-            <h3>La réputation</h3>
-            <p>Parce qu'une bonne entreprise s'appuie sur une confiance construite dans le temps.</p>
-          </div>
-        </li>
-        <li class="ruled-item reveal">
-          <span class="ruled-item-num">03</span>
-          <div>
-            <h3>Les relations d'affaires</h3>
-            <p>Parce que clients, fournisseurs et partenaires sont souvent au c&oelig;ur de la stabilité future.</p>
-          </div>
-        </li>
-        <li class="ruled-item reveal">
-          <span class="ruled-item-num">04</span>
-          <div>
-            <h3>Le savoir-faire</h3>
-            <p>Parce que ce qui distingue une entreprise ne se voit pas toujours dans un état financier.</p>
-          </div>
-        </li>
-        <li class="ruled-item reveal">
-          <span class="ruled-item-num">05</span>
-          <div>
-            <h3>L'ancrage local</h3>
-            <p>Parce que plusieurs PME québécoises tirent leur force de leur enracinement dans leur milieu.</p>
-          </div>
-        </li>
+        <li class="ruled-item reveal"><span class="ruled-item-num">01</span><div><h3>Les &eacute;quipes</h3><p>Parce que la continuit&eacute; repose d'abord sur les personnes qui font vivre l'entreprise au quotidien.</p></div></li>
+        <li class="ruled-item reveal"><span class="ruled-item-num">02</span><div><h3>La r&eacute;putation</h3><p>Parce qu'une bonne entreprise s'appuie sur une confiance construite dans le temps.</p></div></li>
+        <li class="ruled-item reveal"><span class="ruled-item-num">03</span><div><h3>Les relations d'affaires</h3><p>Parce que clients, fournisseurs et partenaires sont souvent au c&oelig;ur de la stabilit&eacute; future.</p></div></li>
+        <li class="ruled-item reveal"><span class="ruled-item-num">04</span><div><h3>Le savoir-faire</h3><p>Parce que ce qui distingue une entreprise ne se voit pas toujours dans un &eacute;tat financier.</p></div></li>
+        <li class="ruled-item reveal"><span class="ruled-item-num">05</span><div><h3>L'ancrage local</h3><p>Parce que plusieurs PME qu&eacute;b&eacute;coises tirent leur force de leur enracinement dans leur milieu.</p></div></li>
       </ul>
     </div>
   </section>
@@ -873,39 +1064,15 @@
   <!-- ====== APPROACH ====== -->
   <section class="section section--warm-alt approach">
     <div class="container container--narrow">
-      <p class="eyebrow reveal">Comment ça fonctionne</p>
+      <p class="eyebrow reveal">Comment &ccedil;a fonctionne</p>
       <h2 class="headline-lg reveal" style="transition-delay: 0.05s;">Un processus simple, direct et confidentiel</h2>
-      <p class="body-lg reveal" style="transition-delay: 0.1s;">Chaque conversation est unique. Nous adaptons notre rythme à votre réalité et à vos priorités.</p>
+      <p class="body-lg reveal" style="transition-delay: 0.1s;">Chaque conversation est unique. Nous adaptons notre rythme &agrave; votre r&eacute;alit&eacute; et &agrave; vos priorit&eacute;s.</p>
       <div class="reveal-line section-line reveal" style="transition-delay: 0.12s;"></div>
       <ul class="ruled-list reveal-stagger">
-        <li class="ruled-item reveal">
-          <span class="ruled-item-num">01</span>
-          <div>
-            <h3>Premier échange</h3>
-            <p>Une discussion initiale pour faire connaissance et comprendre le contexte.</p>
-          </div>
-        </li>
-        <li class="ruled-item reveal">
-          <span class="ruled-item-num">02</span>
-          <div>
-            <h3>Compréhension de l'entreprise</h3>
-            <p>Un échange plus concret sur l'activité, l'équipe, les enjeux et les priorités.</p>
-          </div>
-        </li>
-        <li class="ruled-item reveal">
-          <span class="ruled-item-num">03</span>
-          <div>
-            <h3>Évaluation du fit</h3>
-            <p>Nous déterminons s'il existe un réel alignement sur la vision, la continuité et le potentiel de développement.</p>
-          </div>
-        </li>
-        <li class="ruled-item reveal">
-          <span class="ruled-item-num">04</span>
-          <div>
-            <h3>Prochaines étapes</h3>
-            <p>Si le fit est bon, nous convenons ensemble de la façon la plus simple et la plus sérieuse d'aller plus loin.</p>
-          </div>
-        </li>
+        <li class="ruled-item reveal"><span class="ruled-item-num">01</span><div><h3>Premier &eacute;change</h3><p>Une discussion initiale pour faire connaissance et comprendre le contexte.</p></div></li>
+        <li class="ruled-item reveal"><span class="ruled-item-num">02</span><div><h3>Compr&eacute;hension de l'entreprise</h3><p>Un &eacute;change plus concret sur l'activit&eacute;, l'&eacute;quipe, les enjeux et les priorit&eacute;s.</p></div></li>
+        <li class="ruled-item reveal"><span class="ruled-item-num">03</span><div><h3>&Eacute;valuation du fit</h3><p>Nous d&eacute;terminons s'il existe un r&eacute;el alignement sur la vision, la continuit&eacute; et le potentiel de d&eacute;veloppement.</p></div></li>
+        <li class="ruled-item reveal"><span class="ruled-item-num">04</span><div><h3>Prochaines &eacute;tapes</h3><p>Si le fit est bon, nous convenons ensemble de la fa&ccedil;on la plus simple et la plus s&eacute;rieuse d'aller plus loin.</p></div></li>
       </ul>
       <div class="reveal" style="margin-top: clamp(2rem, 4vw, 3rem); transition-delay: 0.3s;">
         <a href="/notre-approche" class="btn btn--primary">En savoir plus sur notre approche <span class="btn-arrow">&rarr;</span></a>
@@ -916,40 +1083,62 @@
   <!-- ====== PROOF (Abris-Temps) ====== -->
   <section class="section--dark proof" style="padding-bottom: var(--section-pad);">
     <div class="proof-image reveal">
-      <img src="images/dillon-wanner-Geei_CUnPns-unsplash.jpg" alt="Abris-Temps — Abris extérieurs sur mesure">
+      <img src="images/dillon-wanner-Geei_CUnPns-unsplash.jpg" alt="Abris-Temps">
     </div>
     <div class="container container--narrow proof-content">
       <p class="eyebrow reveal" style="color: var(--gold);">Notre portefeuille</p>
-      <div class="proof-meta reveal" style="transition-delay: 0.05s;">
-        <span>Fondée en 1997</span>
-        <span class="proof-meta-dot" aria-hidden="true"></span>
-        <span>~1.4M$ revenus</span>
-        <span class="proof-meta-dot" aria-hidden="true"></span>
-        <span>Lévis, QC</span>
-      </div>
-      <h2 class="headline-lg reveal" style="transition-delay: 0.08s;">Une première entreprise, un engagement bien réel</h2>
-      <p class="body-lg reveal" style="transition-delay: 0.12s;">Abris-Temps est la première entreprise du portefeuille Rue Principale. Ce choix reflète notre manière de penser: reprendre des entreprises solides, utiles, bien établies et porteuses d'un potentiel de développement durable.</p>
-      <div class="reveal-line section-line reveal" style="transition-delay: 0.14s;"></div>
-      <div class="reveal" style="transition-delay: 0.18s;">
-        <a href="/entreprises/abris-temps" class="btn btn--gold">Découvrir Abris-Temps <span class="btn-arrow">&rarr;</span></a>
+      <div class="proof-layout">
+        <div>
+          <div class="proof-meta reveal" style="transition-delay: 0.05s;">
+            <span>Fond&eacute;e en 1997</span>
+            <span class="proof-meta-dot" aria-hidden="true"></span>
+            <span>~1.4M$ revenus</span>
+            <span class="proof-meta-dot" aria-hidden="true"></span>
+            <span>L&eacute;vis, QC</span>
+          </div>
+          <h2 class="headline-lg reveal" style="transition-delay: 0.08s;">Une premi&egrave;re entreprise, un engagement bien r&eacute;el</h2>
+          <p class="body-lg reveal" style="transition-delay: 0.12s;">Abris-Temps est la premi&egrave;re entreprise du portefeuille Rue Principale. Ce choix refl&egrave;te notre mani&egrave;re de penser: reprendre des entreprises solides, utiles, bien &eacute;tablies et porteuses d'un potentiel de d&eacute;veloppement durable.</p>
+          <div class="reveal-line section-line reveal" style="transition-delay: 0.14s;"></div>
+          <div class="reveal" style="transition-delay: 0.18s;">
+            <a href="/entreprises/abris-temps" class="btn btn--gold">D&eacute;couvrir Abris-Temps <span class="btn-arrow">&rarr;</span></a>
+          </div>
+        </div>
+        <aside class="proof-sidebar reveal" style="transition-delay: 0.15s;">
+          <div class="proof-sidebar-item">
+            <span class="proof-sidebar-label">Fond&eacute;e</span>
+            <span class="proof-sidebar-value">1997</span>
+          </div>
+          <div class="proof-sidebar-item">
+            <span class="proof-sidebar-label">Revenus</span>
+            <span class="proof-sidebar-value">~1.4M$</span>
+          </div>
+          <div class="proof-sidebar-item">
+            <span class="proof-sidebar-label">Localisation</span>
+            <span class="proof-sidebar-value">L&eacute;vis, QC</span>
+          </div>
+          <div class="proof-sidebar-item">
+            <span class="proof-sidebar-label">Secteur</span>
+            <span class="proof-sidebar-value">Manufacturier</span>
+          </div>
+        </aside>
       </div>
     </div>
   </section>
 
   <!-- ====== FOUNDER ====== -->
   <section class="section section--warm founder">
-    <div class="container container--narrow">
+    <div class="container container--wide">
       <div class="reveal-line section-line reveal" style="margin-top: 0;"></div>
       <div class="founder-grid" style="margin-top: clamp(2.5rem, 5vw, 4rem);">
         <div class="founder-photo reveal">
-          <img src="images/annie-spratt-MChSQHxGZrQ-unsplash.jpg" alt="Frédéric Raymond, fondateur de Rue Principale">
+          <img src="images/annie-spratt-MChSQHxGZrQ-unsplash.jpg" alt="Fr&eacute;d&eacute;ric Raymond, fondateur de Rue Principale">
         </div>
         <div class="founder-bio">
           <p class="eyebrow reveal" style="transition-delay: 0.05s;">Le fondateur</p>
-          <h2 class="headline-md reveal" style="transition-delay: 0.08s;">Frédéric Raymond</h2>
-          <p class="body-sm reveal" style="transition-delay: 0.12s;">Entrepreneur et fondateur de Rue Principale. Parcours en finance, développement des affaires et gestion des opérations. Une ambition: bâtir un portefeuille de PME durables au Québec.</p>
+          <h2 class="headline-md reveal" style="transition-delay: 0.08s;">Fr&eacute;d&eacute;ric Raymond</h2>
+          <p class="body-sm reveal" style="transition-delay: 0.12s;">Entrepreneur et fondateur de Rue Principale. Parcours en finance, d&eacute;veloppement des affaires et gestion des op&eacute;rations. Une ambition: b&acirc;tir un portefeuille de PME durables au Qu&eacute;bec.</p>
           <div class="reveal" style="transition-delay: 0.16s;">
-            <a href="/fondateur" class="btn btn--gold">Découvrir le fondateur <span class="btn-arrow">&rarr;</span></a>
+            <a href="/fondateur" class="btn btn--gold">D&eacute;couvrir le fondateur <span class="btn-arrow">&rarr;</span></a>
           </div>
         </div>
       </div>
@@ -957,18 +1146,19 @@
   </section>
 
   <!-- ====== CONTACT ====== -->
-  <section class="section section--dark contact" id="contact">
+  <section class="section--dark contact" id="contact">
     <div class="container container--narrow">
-      <p class="eyebrow reveal">Première étape</p>
-      <h2 class="headline-lg reveal" style="transition-delay: 0.05s;">Une première discussion simple, confidentielle et sans pression.</h2>
-      <p class="body-lg reveal" style="transition-delay: 0.1s;">Que vous envisagiez une transition ou que vous souhaitiez simplement en discuter en toute confidentialité, la première étape reste simple: entrer en conversation.</p>
+      <p class="eyebrow reveal">Premi&egrave;re &eacute;tape</p>
+      <h2 class="headline-lg reveal" style="transition-delay: 0.05s;">Une premi&egrave;re discussion simple, confidentielle et sans pression.</h2>
+      <p class="body-lg reveal" style="transition-delay: 0.1s;">Que vous envisagiez une transition ou que vous souhaitiez simplement en discuter en toute confidentialit&eacute;, la premi&egrave;re &eacute;tape reste simple: entrer en conversation.</p>
+      <p class="contact-precision reveal" style="transition-delay: 0.12s;">30 minutes. Confidentiel. Sans engagement.</p>
       <div class="reveal" style="transition-delay: 0.15s;">
         <a href="mailto:info@rueprincipale.ca" class="btn btn--gold">Parler de votre entreprise</a>
       </div>
       <a href="mailto:info@rueprincipale.ca" class="contact-email reveal" style="transition-delay: 0.2s;">info@rueprincipale.ca</a>
       <div class="contact-footer">
         <div class="contact-footer-line reveal-line reveal"></div>
-        <p class="reveal">Rue Principale, Lévis, Québec</p>
+        <p class="reveal">Rue Principale, L&eacute;vis, Qu&eacute;bec</p>
       </div>
     </div>
   </section>
@@ -977,16 +1167,19 @@
   <footer class="footer">
     <div class="footer-top-line" aria-hidden="true"></div>
     <div class="container">
+      <div class="footer-watermark reveal">
+        <img src="brand/mark-cream.svg" alt="" aria-hidden="true">
+      </div>
       <div class="footer-grid">
         <div class="footer-col">
-          <p class="footer-col-title">À propos</p>
-          <p>Assurer leur avenir, faire croître leur histoire.</p>
+          <p class="footer-col-title">&Agrave; propos</p>
+          <p>Assurer leur avenir, faire cro&icirc;tre leur histoire.</p>
         </div>
         <div class="footer-col">
           <p class="footer-col-title">Navigation</p>
           <nav>
             <a href="/">Accueil</a>
-            <a href="/pour-proprietaires">Pour propriétaires</a>
+            <a href="/pour-proprietaires">Pour propri&eacute;taires</a>
             <a href="/entreprises">Nos entreprises</a>
             <a href="/notre-approche">Notre approche</a>
             <a href="/fondateur">Fondateur</a>
@@ -995,19 +1188,19 @@
         <div class="footer-col">
           <p class="footer-col-title">Contact</p>
           <a href="mailto:info@rueprincipale.ca">info@rueprincipale.ca</a>
-          <p style="margin-top: 0.5rem;">Québec &amp; Lévis, QC, Canada</p>
+          <p style="margin-top: 0.5rem;">Qu&eacute;bec &amp; L&eacute;vis, QC, Canada</p>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2026 Rue Principale. Tous droits réservés.</p>
-        <p>Québec &amp; Lévis, Québec</p>
+        <p>&copy; 2026 Rue Principale. Tous droits r&eacute;serv&eacute;s.</p>
+        <p>Qu&eacute;bec &amp; L&eacute;vis, Qu&eacute;bec</p>
       </div>
     </div>
   </footer>
 
   <!-- ====== SCRIPTS ====== -->
   <script>
-    // Scroll reveal with IntersectionObserver
+    // ---- Scroll reveal ----
     const reveals = document.querySelectorAll('.reveal, .reveal-line');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -1016,11 +1209,10 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     reveals.forEach(el => observer.observe(el));
 
-    // Header scroll state
+    // ---- Header scroll state ----
     const header = document.getElementById('header');
     let ticking = false;
     window.addEventListener('scroll', () => {
@@ -1031,6 +1223,108 @@
         });
         ticking = true;
       }
+    });
+
+    // ---- Hero parallax ----
+    const heroBg = document.getElementById('heroBg');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReducedMotion && heroBg) {
+      window.addEventListener('scroll', () => {
+        requestAnimationFrame(() => {
+          const y = window.scrollY;
+          if (y < window.innerHeight * 1.2) {
+            heroBg.style.transform = `translateY(${y * 0.25}px)`;
+          }
+        });
+      }, { passive: true });
+    }
+
+    // ---- Stats counter ----
+    const counters = document.querySelectorAll('.stat-number[data-count]');
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    counters.forEach(el => {
+      if (prefersReducedMotion) {
+        showFinalValue(el);
+      } else {
+        counterObserver.observe(el);
+      }
+    });
+
+    function showFinalValue(el) {
+      const target = parseInt(el.dataset.count);
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      const format = el.dataset.format;
+      let display = target.toString();
+      if (format === 'space') display = target.toLocaleString('fr-CA').replace(/,/g, ' ');
+      el.textContent = prefix + display + suffix;
+    }
+
+    function animateCounter(el) {
+      const target = parseInt(el.dataset.count);
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      const format = el.dataset.format;
+      const duration = 2000;
+      const start = performance.now();
+
+      function tick(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+        const current = Math.round(eased * target);
+
+        let display = current.toString();
+        if (format === 'space') display = current.toLocaleString('fr-CA').replace(/,/g, ' ');
+
+        el.textContent = prefix + display + suffix;
+
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    // ---- Mobile menu ----
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.contains('open');
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = isOpen ? '' : 'hidden';
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // ---- Smooth scroll with header offset ----
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', (e) => {
+        const id = anchor.getAttribute('href');
+        if (id === '#') return;
+        const target = document.querySelector(id);
+        if (target) {
+          e.preventDefault();
+          const offset = 80;
+          const y = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      });
     });
   </script>
 
