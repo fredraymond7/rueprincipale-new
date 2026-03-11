@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pour propri&eacute;taires &mdash; Rue Principale</title>
+  <meta name="description" content="Une transition réfléchie pour les propriétaires qui veulent plus qu'une simple transaction. Rue Principale reprend des PME québécoises performantes.">
+  <meta property="og:title" content="Pour propriétaires — Rue Principale">
+  <meta property="og:description" content="Une transition réfléchie pour les propriétaires qui veulent plus qu'une simple transaction. Rue Principale reprend des PME québécoises performantes.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rueprincipale.ca/pour-proprietaires">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ========================================
+       RESET & BASE
+       ======================================== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      color: #2a2a28;
+      background-color: #f8f2e8;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background-color: #003399;
+      color: #f8f2e8;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ========================================
+       TOKENS
+       ======================================== */
+    :root {
+      --cream: #f8f2e8;
+      --cream-dark: #f0e8d8;
+      --nuit: #0f1a2e;
+      --nuit-light: #162240;
+      --blue: #003399;
+      --blue-light: #1a4fbf;
+      --gold: #b8922e;
+      --gold-light: #c9a33f;
+      --text-dark: #2a2a28;
+      --text-muted: #6a6a64;
+      --text-on-dark: #f8f2e8;
+      --text-on-dark-muted: #c8bfb0;
+      --border-warm: #e0d8c8;
+      --border-dark: rgba(248, 242, 232, 0.1);
+
+      --font-serif: 'Lora', Georgia, serif;
+      --font-sans: 'Outfit', -apple-system, sans-serif;
+
+      --container: 1200px;
+      --container-narrow: 860px;
+      --container-wide: 1100px;
+      --gutter: clamp(1.5rem, 4vw, 4rem);
+      --section-pad: clamp(5rem, 10vw, 8rem);
+      --section-pad-lg: clamp(7rem, 14vw, 12rem);
+    }
+
+    /* ========================================
+       LAYOUT
+       ======================================== */
+    .container {
+      width: 100%;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+    .container--narrow { max-width: var(--container-narrow); }
+    .container--wide { max-width: var(--container-wide); }
+
+    /* ========================================
+       TYPOGRAPHY
+       ======================================== */
+    .eyebrow {
+      font-family: var(--font-sans);
+      font-size: 0.6875rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .eyebrow::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .headline-xl {
+      font-family: var(--font-serif);
+      font-size: clamp(2.75rem, 7vw + 0.5rem, 7rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      font-weight: 400;
+    }
+
+    .headline-lg {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4.5vw + 0.5rem, 3.75rem);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      font-weight: 400;
+    }
+
+    .headline-md {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 2.5vw + 0.5rem, 2.5rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      font-weight: 400;
+    }
+
+    .body-lg {
+      font-size: clamp(1rem, 0.5vw + 0.875rem, 1.125rem);
+      line-height: 1.75;
+    }
+
+    .body-sm {
+      font-size: 0.9375rem;
+      line-height: 1.7;
+    }
+
+    /* ========================================
+       BUTTONS
+       ======================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-sans);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 0.9rem 2rem;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn--primary {
+      background-color: var(--blue);
+      color: #fff;
+    }
+    .btn--primary:hover {
+      background-color: var(--blue-light);
+      transform: translateY(-1px);
+    }
+
+    .btn--ghost {
+      background: transparent;
+      color: var(--text-dark);
+      border: 1px solid var(--border-warm);
+    }
+    .btn--ghost:hover {
+      border-color: var(--text-muted);
+      background: rgba(0,0,0,0.02);
+    }
+
+    .btn--ghost-dark {
+      background: transparent;
+      color: var(--text-on-dark);
+      border: 1px solid rgba(248, 242, 232, 0.2);
+    }
+    .btn--ghost-dark:hover {
+      border-color: rgba(248, 242, 232, 0.45);
+      background: rgba(248, 242, 232, 0.04);
+    }
+
+    .btn--gold {
+      background-color: var(--gold);
+      color: #fff;
+    }
+    .btn--gold:hover {
+      background-color: var(--gold-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-arrow {
+      display: inline-block;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn:hover .btn-arrow { transform: translateX(3px); }
+
+    /* ========================================
+       SCROLL REVEAL
+       ======================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-line {
+      width: 100%;
+      height: 1px;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-line.visible { transform: scaleX(1); }
+
+    .reveal-stagger > .reveal:nth-child(1) { transition-delay: 0s; }
+    .reveal-stagger > .reveal:nth-child(2) { transition-delay: 0.06s; }
+    .reveal-stagger > .reveal:nth-child(3) { transition-delay: 0.12s; }
+    .reveal-stagger > .reveal:nth-child(4) { transition-delay: 0.18s; }
+    .reveal-stagger > .reveal:nth-child(5) { transition-delay: 0.24s; }
+    .reveal-stagger > .reveal:nth-child(6) { transition-delay: 0.30s; }
+
+    /* ========================================
+       HEADER / NAV
+       ======================================== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.25rem 0;
+      transition: padding 0.4s ease, background-color 0.4s ease;
+    }
+
+    .header.scrolled {
+      padding: 0.75rem 0;
+      background-color: rgba(15, 26, 46, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-mark {
+      height: 28px;
+      width: auto;
+      opacity: 0.9;
+      transition: opacity 0.3s;
+    }
+    .logo-mark:hover { opacity: 1; }
+
+    .nav-links {
+      display: none;
+      list-style: none;
+      gap: 2.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .nav-links { display: flex; }
+      .hamburger { display: none !important; }
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+      color: rgba(248, 242, 232, 0.6);
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--text-on-dark); }
+
+    .nav-cta {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--text-on-dark);
+      padding: 0.6rem 1.5rem;
+      border: 1px solid rgba(248, 242, 232, 0.2);
+      border-radius: 100px;
+      transition: all 0.3s;
+    }
+    .nav-cta:hover {
+      border-color: rgba(248, 242, 232, 0.45);
+      background: rgba(248, 242, 232, 0.05);
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 28px;
+      height: 28px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 201;
+    }
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 1.5px;
+      background: var(--text-on-dark);
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+
+    /* Mobile menu overlay */
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: var(--nuit);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+    .mobile-menu.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .mobile-menu a {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      color: var(--text-on-dark);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s ease, transform 0.4s ease, color 0.3s;
+    }
+    .mobile-menu.open a {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .mobile-menu.open a:nth-child(1) { transition-delay: 0.05s; }
+    .mobile-menu.open a:nth-child(2) { transition-delay: 0.1s; }
+    .mobile-menu.open a:nth-child(3) { transition-delay: 0.15s; }
+    .mobile-menu.open a:nth-child(4) { transition-delay: 0.2s; }
+    .mobile-menu.open a:nth-child(5) { transition-delay: 0.25s; }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    @media (min-width: 768px) {
+      .mobile-menu { display: none; }
+    }
+
+    /* ========================================
+       SECTIONS — SHARED
+       ======================================== */
+    .section {
+      padding: var(--section-pad) 0;
+    }
+
+    .section--warm { background-color: var(--cream); color: var(--text-dark); }
+    .section--warm-alt { background-color: var(--cream-dark); color: var(--text-dark); }
+    .section--dark { background-color: var(--nuit); color: var(--text-on-dark); }
+
+    .section--dark .eyebrow { color: var(--gold); }
+    .section--warm .eyebrow,
+    .section--warm-alt .eyebrow { color: var(--gold); }
+
+    .section--warm .body-lg,
+    .section--warm-alt .body-lg { color: var(--text-muted); }
+    .section--dark .body-lg { color: var(--text-on-dark-muted); }
+
+    .section-line {
+      height: 1px;
+      margin: clamp(2.5rem, 5vw, 4rem) 0;
+    }
+    .section--warm .section-line,
+    .section--warm-alt .section-line { background-color: var(--border-warm); }
+    .section--dark .section-line { background-color: var(--border-dark); }
+
+    /* ========================================
+       RULED LIST
+       ======================================== */
+    .ruled-list { list-style: none; }
+
+    .ruled-item {
+      padding: clamp(1rem, 2vw, 1.5rem) 0.75rem;
+      border-top: 1px solid var(--border-dark);
+      display: flex;
+      gap: clamp(1rem, 2vw, 1.5rem);
+      align-items: baseline;
+      margin: 0 -0.75rem;
+      border-radius: 4px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      cursor: default;
+    }
+
+    .ruled-item:last-child { border-bottom: 1px solid var(--border-dark); }
+
+    .ruled-item:hover {
+      transform: translateX(4px);
+    }
+
+    .section--dark .ruled-item:hover { background: rgba(248, 242, 232, 0.03); }
+    .section--warm .ruled-item:hover,
+    .section--warm-alt .ruled-item:hover { background: rgba(0, 0, 0, 0.02); }
+
+    .ruled-item-num {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      color: var(--gold);
+      flex-shrink: 0;
+      min-width: 2.5ch;
+      opacity: 0.4;
+      transition: opacity 0.3s ease;
+    }
+
+    .ruled-item:hover .ruled-item-num { opacity: 1; }
+
+    .section--warm .ruled-item { border-color: var(--border-warm); }
+    .section--warm .ruled-item:last-child { border-bottom-color: var(--border-warm); }
+    .section--warm-alt .ruled-item { border-color: var(--border-warm); }
+    .section--warm-alt .ruled-item:last-child { border-bottom-color: var(--border-warm); }
+
+    .ruled-item h3 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.1rem, 1.5vw + 0.4rem, 1.3rem);
+      line-height: 1.3;
+      font-weight: 400;
+      margin-bottom: 0.25rem;
+    }
+
+    .section--dark .ruled-item h3 { color: var(--text-on-dark); }
+    .section--warm .ruled-item h3,
+    .section--warm-alt .ruled-item h3 { color: var(--text-dark); }
+
+    .ruled-item p { font-size: 0.9375rem; line-height: 1.7; }
+    .section--dark .ruled-item p { color: var(--text-on-dark-muted); }
+    .section--warm .ruled-item p,
+    .section--warm-alt .ruled-item p { color: var(--text-muted); }
+
+    /* ========================================
+       FOOTER
+       ======================================== */
+    .footer {
+      background-color: var(--nuit);
+      padding: clamp(4rem, 8vw, 6rem) 0 2rem;
+      position: relative;
+    }
+
+    .footer-top-line {
+      position: absolute;
+      top: 0;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--blue), var(--gold), var(--blue), transparent);
+      opacity: 0.3;
+    }
+
+    .footer-watermark {
+      display: flex;
+      justify-content: center;
+      margin-bottom: clamp(3rem, 6vw, 5rem);
+    }
+
+    .footer-watermark img {
+      width: clamp(80px, 12vw, 120px);
+      height: auto;
+      opacity: 0.04;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: clamp(3rem, 6vw, 5rem);
+    }
+
+    .footer-col-title {
+      font-size: 0.6875rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: #8a8070;
+      margin-bottom: 1rem;
+    }
+
+    .footer-col p,
+    .footer-col a {
+      font-size: 0.875rem;
+      color: var(--text-on-dark-muted);
+      line-height: 1.7;
+      transition: color 0.3s;
+    }
+    .footer-col a:hover { color: var(--text-on-dark); }
+
+    .footer-col nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #1a3050;
+      padding-top: 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .footer-bottom p { font-size: 0.75rem; color: #8a8070; }
+
+    /* ========================================
+       PAGE HERO (subpages)
+       ======================================== */
+    .page-hero {
+      background-color: var(--nuit);
+      padding-top: clamp(10rem, 16vw, 14rem);
+      padding-bottom: clamp(5rem, 10vw, 8rem);
+    }
+    .page-hero .eyebrow { color: var(--gold); }
+    .page-hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 5.5vw + 0.5rem, 5rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--text-on-dark);
+      max-width: 14ch;
+      margin-bottom: 1.75rem;
+    }
+    .page-hero .body-lg { color: var(--text-on-dark-muted); max-width: 58ch; margin-bottom: 2rem; }
+    .page-hero .hero-ctas { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+    /* ========================================
+       DISPLAY QUOTE
+       ======================================== */
+    .display-quote {
+      font-family: var(--font-serif);
+      font-size: clamp(1.75rem, 3vw + 0.5rem, 2.75rem);
+      line-height: 1.2;
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    /* ========================================
+       TIMELINE STEPS
+       ======================================== */
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      position: relative;
+    }
+    @media (min-width: 768px) {
+      .timeline-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+      }
+    }
+    .timeline-item { padding: 0 1.5rem; position: relative; }
+    .timeline-number {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+      position: relative;
+      z-index: 1;
+    }
+    .timeline-item h3 { font-family: var(--font-serif); font-size: 1.1rem; color: var(--text-on-dark); margin-bottom: 0.4rem; font-weight: 400; }
+    .timeline-item p { color: var(--text-on-dark-muted); line-height: 1.65; font-size: 0.92rem; }
+    .timeline-line {
+      display: none;
+      position: absolute;
+      top: 1.1rem;
+      left: 2rem;
+      right: 2rem;
+      height: 1px;
+      background: rgba(184, 146, 46, 0.3);
+    }
+    @media (min-width: 768px) { .timeline-line { display: block; } }
+
+    /* ========================================
+       RESPONSIVE
+       ======================================== */
+    @media (max-width: 639px) {
+      .headline-xl { font-size: clamp(2.5rem, 10vw, 3.5rem); }
+    }
+
+    /* ========================================
+       REDUCED MOTION
+       ======================================== */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .reveal-line { transform: scaleX(1); transition: none; }
+      .ruled-item { transition: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====== HEADER ====== -->
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="/" aria-label="Rue Principale">
+          <img src="brand/mark-cream.svg" alt="Rue Principale" class="logo-mark">
+        </a>
+        <nav>
+          <ul class="nav-links">
+            <li><a href="/pour-proprietaires">Pour propri&eacute;taires</a></li>
+            <li><a href="/entreprises">Nos entreprises</a></li>
+            <li><a href="/notre-approche">Notre approche</a></li>
+            <li><a href="/fondateur">Fondateur</a></li>
+          </ul>
+        </nav>
+        <a href="/#contact" class="nav-cta hide-mobile">Nous joindre</a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/pour-proprietaires" class="mobile-link">Pour propri&eacute;taires</a>
+    <a href="/entreprises" class="mobile-link">Nos entreprises</a>
+    <a href="/notre-approche" class="mobile-link">Notre approche</a>
+    <a href="/fondateur" class="mobile-link">Fondateur</a>
+    <a href="/#contact" class="mobile-link">Nous joindre</a>
+  </div>
+
+  <!-- ====== SECTION 1 — PAGE HERO ====== -->
+  <section class="page-hero">
+    <div class="container container--narrow">
+      <p class="eyebrow reveal">Pour propri&eacute;taires</p>
+      <h1 class="reveal" style="transition-delay: 0.05s;">Une transition r&eacute;fl&eacute;chie pour les propri&eacute;taires qui veulent plus qu'une simple transaction</h1>
+      <p class="body-lg reveal" style="transition-delay: 0.1s;">Vendre son entreprise ne consiste pas seulement &agrave; conclure une transaction. Il s'agit aussi de prot&eacute;ger une &eacute;quipe, une r&eacute;putation, des relations de confiance et des ann&eacute;es de travail. Rue Principale reprend des PME qu&eacute;b&eacute;coises performantes avec une approche directe, humaine et &agrave; long terme.</p>
+      <div class="hero-ctas reveal" style="transition-delay: 0.15s;">
+        <a href="/#contact" class="btn btn--primary">Planifier une premi&egrave;re conversation</a>
+        <a href="/notre-approche" class="btn btn--ghost-dark">D&eacute;couvrir notre approche <span class="btn-arrow">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== SECTION 2 — STATEMENT ====== -->
+  <section class="section section--warm-alt">
+    <div class="container container--narrow">
+      <h2 class="headline-lg reveal">Une entreprise ne se transmet pas comme un actif ordinaire</h2>
+      <div class="reveal-line section-line reveal" style="transition-delay: 0.05s;"></div>
+      <p class="body-lg reveal" style="transition-delay: 0.1s;">Pour plusieurs propri&eacute;taires, l'entreprise repr&eacute;sente bien davantage qu'un bilan ou qu'une valeur de transaction. Elle est souvent le fruit de nombreuses ann&eacute;es d'efforts, de d&eacute;cisions difficiles, de relations b&acirc;ties avec patience et d'un engagement profond envers les employ&eacute;s, les clients et la communaut&eacute;.</p>
+      <p class="body-lg reveal" style="transition-delay: 0.15s; margin-top: 1.25rem;">Lorsqu'un moment de transition approche, les questions d&eacute;passent rapidement le prix. Qui prendra le relais? L'entreprise conservera-t-elle son identit&eacute;? L'&eacute;quipe sera-t-elle respect&eacute;e? Rue Principale existe pr&eacute;cis&eacute;ment pour r&eacute;pondre &agrave; ces enjeux.</p>
+    </div>
+  </section>
+
+  <!-- ====== SECTION 3 — PRESERVATION ====== -->
+  <section class="section section--dark">
+    <div class="container container--narrow">
+      <p class="eyebrow reveal">Ce que nous pr&eacute;servons</p>
+      <h2 class="headline-lg reveal" style="transition-delay: 0.05s; color: var(--text-on-dark); max-width: 18ch;">Pr&eacute;server ce qui fait r&eacute;ellement la valeur d'une entreprise</h2>
+      <p class="body-lg reveal" style="transition-delay: 0.1s;">Lors d'une rel&egrave;ve, nous croyons qu'il faut prot&eacute;ger bien plus que les r&eacute;sultats financiers.</p>
+      <div class="reveal-line section-line reveal" style="transition-delay: 0.12s;"></div>
+      <ul class="ruled-list reveal-stagger">
+        <li class="ruled-item reveal"><span class="ruled-item-num">01</span><div><h3>Les &eacute;quipes</h3><p>Parce que la continuit&eacute; repose d'abord sur les personnes qui font vivre l'entreprise au quotidien.</p></div></li>
+        <li class="ruled-item reveal"><span class="ruled-item-num">02</span><div><h3>La r&eacute;putation</h3><p>Parce qu'une bonne entreprise s'appuie sur une confiance construite dans le temps.</p></div></li>
+        <li class="ruled-item reveal"><span class="ruled-item-num">03</span><div><h3>Les relations d'affaires</h3><p>Parce que clients, fournisseurs et partenaires sont souvent au c&oelig;ur de la stabilit&eacute; future.</p></div></li>
+        <li class="ruled-item reveal"><span class="ruled-item-num">04</span><div><h3>Le savoir-faire</h3><p>Parce que ce qui distingue une entreprise ne se voit pas toujours dans un &eacute;tat financier.</p></div></li>
+        <li class="ruled-item reveal"><span class="ruled-item-num">05</span><div><h3>L'ancrage local</h3><p>Parce que plusieurs PME qu&eacute;b&eacute;coises tirent leur force de leur enracinement dans leur milieu.</p></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ====== SECTION 4 — APPROACH ====== -->
+  <section class="section section--warm">
+    <div class="container container--narrow">
+      <p class="eyebrow reveal">Notre approche</p>
+      <h2 class="headline-lg reveal" style="transition-delay: 0.05s; max-width: 18ch;">Une approche directe, s&eacute;rieuse et &agrave; long terme</h2>
+      <div class="reveal-line section-line reveal" style="transition-delay: 0.08s;"></div>
+      <p class="body-lg reveal" style="transition-delay: 0.1s;">Rue Principale offre une alternative entrepreneuriale aux propri&eacute;taires qui souhaitent transmettre leur entreprise avec continuit&eacute; et discernement.</p>
+      <p class="body-lg reveal" style="transition-delay: 0.15s; margin-top: 1.25rem;">Vous &eacute;changez directement avec le fondateur. L'approche est simple, confidentielle et centr&eacute;e sur la compr&eacute;hension r&eacute;elle de l'entreprise, de son contexte et de vos objectifs.</p>
+      <div class="reveal" style="transition-delay: 0.2s; margin-top: clamp(2.5rem, 5vw, 4rem);">
+        <p class="display-quote" style="color: var(--text-dark); max-width: 28ch;">Une transition r&eacute;ussie consiste &agrave; transmettre quelque chose qui a &eacute;t&eacute; construit avec effort et engagement.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== SECTION 5 — BUSINESS CRITERIA ====== -->
+  <section class="section section--warm-alt">
+    <div class="container container--narrow">
+      <p class="eyebrow reveal">Crit&egrave;res</p>
+      <h2 class="headline-lg reveal" style="transition-delay: 0.05s;">Les entreprises qui nous int&eacute;ressent</h2>
+      <p class="body-lg reveal" style="transition-delay: 0.1s; max-width: 52ch;">Rue Principale s'int&eacute;resse &agrave; des PME qu&eacute;b&eacute;coises performantes, simples &agrave; comprendre, utiles &agrave; leurs clients et capables de s'inscrire dans une logique de long terme.</p>
+      <div class="reveal-line section-line reveal" style="transition-delay: 0.12s;"></div>
+      <ul class="ruled-list reveal-stagger">
+        <li class="ruled-item reveal"><span class="ruled-item-num">01</span><div><h3>Des entreprises bien &eacute;tablies</h3><p>Avec un historique solide, une client&egrave;le r&eacute;elle et une r&eacute;putation bien ancr&eacute;e.</p></div></li>
+        <li class="ruled-item reveal"><span class="ruled-item-num">02</span><div><h3>Des activit&eacute;s utiles et durables</h3><p>Des services ou produits pour lesquels la demande est tangible et compr&eacute;hensible.</p></div></li>
+        <li class="ruled-item reveal"><span class="ruled-item-num">03</span><div><h3>Des entreprises rentables ou clairement am&eacute;liorables</h3><p>Avec des bases suffisamment solides pour soutenir une croissance disciplin&eacute;e.</p></div></li>
+        <li class="ruled-item reveal"><span class="ruled-item-num">04</span><div><h3>Des organisations enracin&eacute;es dans leur milieu</h3><p>O&ugrave; la continuit&eacute; locale et humaine a une r&eacute;elle importance.</p></div></li>
+        <li class="ruled-item reveal"><span class="ruled-item-num">05</span><div><h3>Des contextes de transition authentiques</h3><p>O&ugrave; le propri&eacute;taire souhaite pr&eacute;parer la suite avec s&eacute;rieux.</p></div></li>
+      </ul>
+      <p class="body-lg reveal" style="margin-top: clamp(2rem, 4vw, 3rem);">Nous portons notamment un int&eacute;r&ecirc;t aux entreprises de services commerciaux et r&eacute;sidentiels, ainsi qu'&agrave; certains mod&egrave;les de services sp&eacute;cialis&eacute;s ou d'agences locales pr&eacute;sentant des bases saines et un potentiel r&eacute;el de d&eacute;veloppement.</p>
+    </div>
+  </section>
+
+  <!-- ====== SECTION 6 — CONVERSATION STEPS ====== -->
+  <section class="section section--dark">
+    <div class="container container--wide">
+      <div class="container--narrow" style="max-width: var(--container-narrow); margin: 0; padding: 0;">
+        <p class="eyebrow reveal">Premi&egrave;re &eacute;tape</p>
+        <h2 class="headline-lg reveal" style="transition-delay: 0.05s; color: var(--text-on-dark); max-width: 18ch;">Une premi&egrave;re discussion simple et sans pression</h2>
+        <p class="body-lg reveal" style="transition-delay: 0.1s; max-width: 52ch;">Le premier &eacute;change sert d'abord &agrave; comprendre votre r&eacute;alit&eacute;, votre entreprise et vos objectifs.</p>
+      </div>
+      <div class="reveal-line section-line reveal" style="transition-delay: 0.12s; background-color: var(--border-dark);"></div>
+      <div class="timeline-grid reveal" style="transition-delay: 0.18s;">
+        <div class="timeline-line" aria-hidden="true"></div>
+        <div class="timeline-item">
+          <div class="timeline-number">01</div>
+          <h3>Prise de contact</h3>
+          <p>Une conversation initiale pour apprendre &agrave; se conna&icirc;tre et situer votre contexte.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-number">02</div>
+          <h3>Compr&eacute;hension</h3>
+          <p>Un &eacute;change plus concret sur l'activit&eacute;, l'&eacute;quipe, la structure et les enjeux.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-number">03</div>
+          <h3>&Eacute;valuation du fit</h3>
+          <p>D&eacute;terminer s'il existe un v&eacute;ritable alignement sur la continuit&eacute; et la vision.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-number">04</div>
+          <h3>Prochaines &eacute;tapes</h3>
+          <p>Convenir ensemble de la fa&ccedil;on la plus s&eacute;rieuse d'aller plus loin.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== SECTION 7 — PROOF ====== -->
+  <section class="section section--warm">
+    <div class="container container--narrow">
+      <p class="eyebrow reveal">Notre portefeuille</p>
+      <h2 class="headline-lg reveal" style="transition-delay: 0.05s;">Une premi&egrave;re preuve concr&egrave;te</h2>
+      <div class="reveal-line section-line reveal" style="transition-delay: 0.08s;"></div>
+      <p class="body-lg reveal" style="transition-delay: 0.1s; max-width: 52ch;">Rue Principale a d&eacute;j&agrave; amorc&eacute; cette d&eacute;marche avec Abris-Temps, premi&egrave;re entreprise du portefeuille. Ce choix refl&egrave;te notre mani&egrave;re de penser: reprendre des entreprises solides, bien &eacute;tablies et porteuses d'un potentiel de d&eacute;veloppement durable.</p>
+      <div class="reveal" style="transition-delay: 0.15s; margin-top: clamp(2rem, 4vw, 3rem);">
+        <a href="/entreprises/abris-temps" class="btn btn--gold">D&eacute;couvrir Abris-Temps <span class="btn-arrow">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== SECTION 8 — CTA ====== -->
+  <section class="section section--dark" style="padding: var(--section-pad-lg) 0;">
+    <div class="container container--narrow" style="text-align: center;">
+      <p class="display-quote reveal" style="color: var(--text-on-dark); max-width: 20ch; margin: 0 auto clamp(2rem, 4vw, 3rem);">Vous r&eacute;fl&eacute;chissez &agrave; la suite pour votre entreprise?</p>
+      <div class="reveal" style="transition-delay: 0.1s;">
+        <a href="/#contact" class="btn btn--gold">Planifier une premi&egrave;re conversation</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="footer">
+    <div class="footer-top-line" aria-hidden="true"></div>
+    <div class="container">
+      <div class="footer-watermark reveal">
+        <img src="brand/mark-cream.svg" alt="" aria-hidden="true">
+      </div>
+      <div class="footer-grid">
+        <div class="footer-col">
+          <p class="footer-col-title">&Agrave; propos</p>
+          <p>Assurer leur avenir, faire cro&icirc;tre leur histoire.</p>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">Navigation</p>
+          <nav>
+            <a href="/">Accueil</a>
+            <a href="/pour-proprietaires">Pour propri&eacute;taires</a>
+            <a href="/entreprises">Nos entreprises</a>
+            <a href="/notre-approche">Notre approche</a>
+            <a href="/fondateur">Fondateur</a>
+          </nav>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">Contact</p>
+          <a href="mailto:info@rueprincipale.ca">info@rueprincipale.ca</a>
+          <p style="margin-top: 0.5rem;">Qu&eacute;bec &amp; L&eacute;vis, QC, Canada</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Rue Principale. Tous droits r&eacute;serv&eacute;s.</p>
+        <p>Qu&eacute;bec &amp; L&eacute;vis, Qu&eacute;bec</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====== SCRIPTS ====== -->
+  <script>
+    // ---- Scroll reveal ----
+    const reveals = document.querySelectorAll('.reveal, .reveal-line');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // ---- Header scroll state ----
+    const header = document.getElementById('header');
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          header.classList.toggle('scrolled', window.scrollY > 60);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+
+    // ---- Mobile menu ----
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.contains('open');
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = isOpen ? '' : 'hidden';
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // ---- Smooth scroll with header offset ----
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', (e) => {
+        const id = anchor.getAttribute('href');
+        if (id === '#') return;
+        const target = document.querySelector(id);
+        if (target) {
+          e.preventDefault();
+          const offset = 80;
+          const y = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

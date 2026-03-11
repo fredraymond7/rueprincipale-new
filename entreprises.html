@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nos entreprises — Rue Principale</title>
+  <meta name="description" content="Un portefeuille qui se construit une entreprise à la fois. Découvrez les entreprises du portefeuille Rue Principale.">
+  <meta property="og:title" content="Nos entreprises — Rue Principale">
+  <meta property="og:description" content="Un portefeuille qui se construit une entreprise à la fois. Découvrez les entreprises du portefeuille Rue Principale.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rueprincipale.ca/entreprises">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ========================================
+       RESET & BASE
+       ======================================== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      color: #2a2a28;
+      background-color: #f8f2e8;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background-color: #003399;
+      color: #f8f2e8;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ========================================
+       TOKENS
+       ======================================== */
+    :root {
+      --cream: #f8f2e8;
+      --cream-dark: #f0e8d8;
+      --nuit: #0f1a2e;
+      --nuit-light: #162240;
+      --blue: #003399;
+      --blue-light: #1a4fbf;
+      --gold: #b8922e;
+      --gold-light: #c9a33f;
+      --text-dark: #2a2a28;
+      --text-muted: #6a6a64;
+      --text-on-dark: #f8f2e8;
+      --text-on-dark-muted: #c8bfb0;
+      --border-warm: #e0d8c8;
+      --border-dark: rgba(248, 242, 232, 0.1);
+
+      --font-serif: 'Lora', Georgia, serif;
+      --font-sans: 'Outfit', -apple-system, sans-serif;
+
+      --container: 1200px;
+      --container-narrow: 860px;
+      --container-wide: 1100px;
+      --gutter: clamp(1.5rem, 4vw, 4rem);
+      --section-pad: clamp(5rem, 10vw, 8rem);
+      --section-pad-lg: clamp(7rem, 14vw, 12rem);
+    }
+
+    /* ========================================
+       LAYOUT
+       ======================================== */
+    .container {
+      width: 100%;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+    .container--narrow { max-width: var(--container-narrow); }
+    .container--wide { max-width: var(--container-wide); }
+
+    /* ========================================
+       TYPOGRAPHY
+       ======================================== */
+    .eyebrow {
+      font-family: var(--font-sans);
+      font-size: 0.6875rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .eyebrow::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .headline-xl {
+      font-family: var(--font-serif);
+      font-size: clamp(2.75rem, 7vw + 0.5rem, 7rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      font-weight: 400;
+    }
+
+    .headline-lg {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4.5vw + 0.5rem, 3.75rem);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      font-weight: 400;
+    }
+
+    .headline-md {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 2.5vw + 0.5rem, 2.5rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      font-weight: 400;
+    }
+
+    .body-lg {
+      font-size: clamp(1rem, 0.5vw + 0.875rem, 1.125rem);
+      line-height: 1.75;
+    }
+
+    .body-sm {
+      font-size: 0.9375rem;
+      line-height: 1.7;
+    }
+
+    /* ========================================
+       BUTTONS
+       ======================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-sans);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 0.9rem 2rem;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn--primary {
+      background-color: var(--blue);
+      color: #fff;
+    }
+    .btn--primary:hover {
+      background-color: var(--blue-light);
+      transform: translateY(-1px);
+    }
+
+    .btn--ghost {
+      background: transparent;
+      color: var(--text-dark);
+      border: 1px solid var(--border-warm);
+    }
+    .btn--ghost:hover {
+      border-color: var(--text-muted);
+      background: rgba(0,0,0,0.02);
+    }
+
+    .btn--ghost-dark {
+      background: transparent;
+      color: var(--text-on-dark);
+      border: 1px solid rgba(248, 242, 232, 0.2);
+    }
+    .btn--ghost-dark:hover {
+      border-color: rgba(248, 242, 232, 0.45);
+      background: rgba(248, 242, 232, 0.04);
+    }
+
+    .btn--gold {
+      background-color: var(--gold);
+      color: #fff;
+    }
+    .btn--gold:hover {
+      background-color: var(--gold-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-arrow {
+      display: inline-block;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn:hover .btn-arrow { transform: translateX(3px); }
+
+    /* ========================================
+       SCROLL REVEAL
+       ======================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-line {
+      width: 100%;
+      height: 1px;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-line.visible { transform: scaleX(1); }
+
+    .reveal-stagger > .reveal:nth-child(1) { transition-delay: 0s; }
+    .reveal-stagger > .reveal:nth-child(2) { transition-delay: 0.06s; }
+    .reveal-stagger > .reveal:nth-child(3) { transition-delay: 0.12s; }
+    .reveal-stagger > .reveal:nth-child(4) { transition-delay: 0.18s; }
+    .reveal-stagger > .reveal:nth-child(5) { transition-delay: 0.24s; }
+    .reveal-stagger > .reveal:nth-child(6) { transition-delay: 0.30s; }
+
+    /* ========================================
+       HEADER / NAV
+       ======================================== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.25rem 0;
+      transition: padding 0.4s ease, background-color 0.4s ease;
+    }
+
+    .header.scrolled {
+      padding: 0.75rem 0;
+      background-color: rgba(15, 26, 46, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-mark {
+      height: 28px;
+      width: auto;
+      opacity: 0.9;
+      transition: opacity 0.3s;
+    }
+    .logo-mark:hover { opacity: 1; }
+
+    .nav-links {
+      display: none;
+      list-style: none;
+      gap: 2.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .nav-links { display: flex; }
+      .hamburger { display: none !important; }
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+      color: rgba(248, 242, 232, 0.6);
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--text-on-dark); }
+
+    .nav-cta {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--text-on-dark);
+      padding: 0.6rem 1.5rem;
+      border: 1px solid rgba(248, 242, 232, 0.2);
+      border-radius: 100px;
+      transition: all 0.3s;
+    }
+    .nav-cta:hover {
+      border-color: rgba(248, 242, 232, 0.45);
+      background: rgba(248, 242, 232, 0.05);
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 28px;
+      height: 28px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 201;
+    }
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 1.5px;
+      background: var(--text-on-dark);
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+
+    /* Mobile menu overlay */
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: var(--nuit);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+    .mobile-menu.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .mobile-menu a {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      color: var(--text-on-dark);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s ease, transform 0.4s ease, color 0.3s;
+    }
+    .mobile-menu.open a {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .mobile-menu.open a:nth-child(1) { transition-delay: 0.05s; }
+    .mobile-menu.open a:nth-child(2) { transition-delay: 0.1s; }
+    .mobile-menu.open a:nth-child(3) { transition-delay: 0.15s; }
+    .mobile-menu.open a:nth-child(4) { transition-delay: 0.2s; }
+    .mobile-menu.open a:nth-child(5) { transition-delay: 0.25s; }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    @media (min-width: 768px) {
+      .mobile-menu { display: none; }
+    }
+
+    /* ========================================
+       SECTIONS — SHARED
+       ======================================== */
+    .section {
+      padding: var(--section-pad) 0;
+    }
+
+    .section--warm { background-color: var(--cream); color: var(--text-dark); }
+    .section--warm-alt { background-color: var(--cream-dark); color: var(--text-dark); }
+    .section--dark { background-color: var(--nuit); color: var(--text-on-dark); }
+
+    .section--dark .eyebrow { color: var(--gold); }
+    .section--warm .eyebrow,
+    .section--warm-alt .eyebrow { color: var(--gold); }
+
+    .section--warm .body-lg,
+    .section--warm-alt .body-lg { color: var(--text-muted); }
+    .section--dark .body-lg { color: var(--text-on-dark-muted); }
+
+    .section-line {
+      height: 1px;
+      margin: clamp(2.5rem, 5vw, 4rem) 0;
+    }
+    .section--warm .section-line,
+    .section--warm-alt .section-line { background-color: var(--border-warm); }
+    .section--dark .section-line { background-color: var(--border-dark); }
+
+    /* ========================================
+       RULED LIST
+       ======================================== */
+    .ruled-list { list-style: none; }
+
+    .ruled-item {
+      padding: clamp(1rem, 2vw, 1.5rem) 0.75rem;
+      border-top: 1px solid var(--border-dark);
+      display: flex;
+      gap: clamp(1rem, 2vw, 1.5rem);
+      align-items: baseline;
+      margin: 0 -0.75rem;
+      border-radius: 4px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      cursor: default;
+    }
+
+    .ruled-item:last-child { border-bottom: 1px solid var(--border-dark); }
+
+    .ruled-item:hover {
+      transform: translateX(4px);
+    }
+
+    .section--dark .ruled-item:hover { background: rgba(248, 242, 232, 0.03); }
+    .section--warm .ruled-item:hover,
+    .section--warm-alt .ruled-item:hover { background: rgba(0, 0, 0, 0.02); }
+
+    .ruled-item-num {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      color: var(--gold);
+      flex-shrink: 0;
+      min-width: 2.5ch;
+      opacity: 0.4;
+      transition: opacity 0.3s ease;
+    }
+
+    .ruled-item:hover .ruled-item-num { opacity: 1; }
+
+    .section--warm .ruled-item { border-color: var(--border-warm); }
+    .section--warm .ruled-item:last-child { border-bottom-color: var(--border-warm); }
+    .section--warm-alt .ruled-item { border-color: var(--border-warm); }
+    .section--warm-alt .ruled-item:last-child { border-bottom-color: var(--border-warm); }
+
+    .ruled-item h3 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.1rem, 1.5vw + 0.4rem, 1.3rem);
+      line-height: 1.3;
+      font-weight: 400;
+      margin-bottom: 0.25rem;
+    }
+
+    .section--dark .ruled-item h3 { color: var(--text-on-dark); }
+    .section--warm .ruled-item h3,
+    .section--warm-alt .ruled-item h3 { color: var(--text-dark); }
+
+    .ruled-item p { font-size: 0.9375rem; line-height: 1.7; }
+    .section--dark .ruled-item p { color: var(--text-on-dark-muted); }
+    .section--warm .ruled-item p,
+    .section--warm-alt .ruled-item p { color: var(--text-muted); }
+
+    /* ========================================
+       PAGE HERO
+       ======================================== */
+    .page-hero {
+      background-color: var(--nuit);
+      padding-top: clamp(10rem, 16vw, 14rem);
+      padding-bottom: clamp(5rem, 10vw, 8rem);
+    }
+    .page-hero .eyebrow { color: var(--gold); }
+    .page-hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 5.5vw + 0.5rem, 5rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--text-on-dark);
+      max-width: 14ch;
+      margin-bottom: 1.75rem;
+    }
+    .page-hero .body-lg { color: var(--text-on-dark-muted); max-width: 58ch; margin-bottom: 2rem; }
+
+    /* ========================================
+       DISPLAY QUOTE
+       ======================================== */
+    .display-quote {
+      font-family: var(--font-serif);
+      font-size: clamp(1.75rem, 3vw + 0.5rem, 2.75rem);
+      line-height: 1.2;
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    /* ========================================
+       FEATURED CARD
+       ======================================== */
+    .featured-card {
+      display: grid;
+      grid-template-columns: 1fr;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid var(--border-warm);
+      box-shadow: 0 4px 40px rgba(0,0,0,0.06);
+      border-radius: 8px;
+    }
+    @media (min-width: 1024px) {
+      .featured-card { grid-template-columns: 1fr 1fr; }
+    }
+    .featured-card-image {
+      position: relative;
+      overflow: hidden;
+      min-height: 360px;
+    }
+    .featured-card-image img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .featured-card:hover .featured-card-image img { transform: scale(1.03); }
+    .featured-card-pill {
+      position: absolute;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      font-weight: 500;
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      backdrop-filter: blur(8px);
+    }
+    .featured-card-body {
+      padding: clamp(2rem, 4vw, 3.5rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* ========================================
+       FOOTER
+       ======================================== */
+    .footer {
+      background-color: var(--nuit);
+      padding: clamp(4rem, 8vw, 6rem) 0 2rem;
+      position: relative;
+    }
+
+    .footer-top-line {
+      position: absolute;
+      top: 0;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--blue), var(--gold), var(--blue), transparent);
+      opacity: 0.3;
+    }
+
+    .footer-watermark {
+      display: flex;
+      justify-content: center;
+      margin-bottom: clamp(3rem, 6vw, 5rem);
+    }
+
+    .footer-watermark img {
+      width: clamp(80px, 12vw, 120px);
+      height: auto;
+      opacity: 0.04;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: clamp(3rem, 6vw, 5rem);
+    }
+
+    .footer-col-title {
+      font-size: 0.6875rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: #8a8070;
+      margin-bottom: 1rem;
+    }
+
+    .footer-col p,
+    .footer-col a {
+      font-size: 0.875rem;
+      color: var(--text-on-dark-muted);
+      line-height: 1.7;
+      transition: color 0.3s;
+    }
+    .footer-col a:hover { color: var(--text-on-dark); }
+
+    .footer-col nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #1a3050;
+      padding-top: 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .footer-bottom p { font-size: 0.75rem; color: #8a8070; }
+
+    /* ========================================
+       RESPONSIVE
+       ======================================== */
+    @media (max-width: 639px) {
+      .headline-xl { font-size: clamp(2.5rem, 10vw, 3.5rem); }
+    }
+
+    /* ========================================
+       REDUCED MOTION
+       ======================================== */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .reveal-line { transform: scaleX(1); transition: none; }
+      .ruled-item { transition: none; }
+      .featured-card-image img { transition: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====== HEADER ====== -->
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="/" aria-label="Rue Principale">
+          <img src="brand/mark-cream.svg" alt="Rue Principale" class="logo-mark">
+        </a>
+        <nav>
+          <ul class="nav-links">
+            <li><a href="/pour-proprietaires">Pour propri&eacute;taires</a></li>
+            <li><a href="/entreprises">Nos entreprises</a></li>
+            <li><a href="/notre-approche">Notre approche</a></li>
+            <li><a href="/fondateur">Fondateur</a></li>
+          </ul>
+        </nav>
+        <a href="/#contact" class="nav-cta hide-mobile">Nous joindre</a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/pour-proprietaires" class="mobile-link">Pour propri&eacute;taires</a>
+    <a href="/entreprises" class="mobile-link">Nos entreprises</a>
+    <a href="/notre-approche" class="mobile-link">Notre approche</a>
+    <a href="/fondateur" class="mobile-link">Fondateur</a>
+    <a href="/#contact" class="mobile-link">Nous joindre</a>
+  </div>
+
+  <!-- ====== SECTION 1 — PAGE HERO ====== -->
+  <section class="page-hero">
+    <div class="container container--narrow">
+      <p class="eyebrow reveal">Nos entreprises</p>
+      <h1 class="reveal" style="transition-delay: 0.05s;">Un portefeuille qui se construit une entreprise &agrave; la fois</h1>
+      <p class="body-lg reveal" style="transition-delay: 0.1s;">Rue Principale ne cherche pas &agrave; accumuler des acquisitions. Nous cherchons &agrave; choisir avec discernement, puis &agrave; b&acirc;tir avec constance. Chaque entreprise du portefeuille doit pr&eacute;senter des bases saines, une utilit&eacute; r&eacute;elle et un potentiel clair de d&eacute;veloppement &agrave; long terme.</p>
+    </div>
+  </section>
+
+  <!-- ====== SECTION 2 — SELECTION PHILOSOPHY ====== -->
+  <section class="section section--warm-alt">
+    <div class="container container--narrow">
+      <h2 class="headline-lg reveal">Qualit&eacute; du fit avant quantit&eacute;</h2>
+      <p class="body-lg reveal" style="transition-delay: 0.05s;">Nous nous int&eacute;ressons &agrave; des PME qu&eacute;b&eacute;coises performantes, simples &agrave; comprendre, utiles &agrave; leurs clients et capables de s'inscrire dans une logique de continuit&eacute; et de d&eacute;veloppement durable.</p>
+      <p class="body-lg reveal" style="transition-delay: 0.08s; margin-top: 1rem;">Le portefeuille Rue Principale se construira avec intention, une entreprise &agrave; la fois, en privil&eacute;giant la solidit&eacute; du mod&egrave;le, la qualit&eacute; de l'&eacute;quipe et le potentiel r&eacute;el de cr&eacute;ation de valeur.</p>
+      <div class="reveal-line section-line reveal" style="transition-delay: 0.1s;"></div>
+      <ul class="ruled-list reveal-stagger">
+        <li class="ruled-item reveal"><span class="ruled-item-num">01</span><div><h3>Ancrage local</h3><p>Des entreprises utiles &agrave; leur communaut&eacute; et solidement implant&eacute;es.</p></div></li>
+        <li class="ruled-item reveal"><span class="ruled-item-num">02</span><div><h3>Simplicit&eacute;</h3><p>Des mod&egrave;les d'affaires clairs, compr&eacute;hensibles et bien op&eacute;r&eacute;s.</p></div></li>
+        <li class="ruled-item reveal"><span class="ruled-item-num">03</span><div><h3>R&eacute;silience</h3><p>Des activit&eacute;s capables de g&eacute;n&eacute;rer des flux de tr&eacute;sorerie durables.</p></div></li>
+        <li class="ruled-item reveal"><span class="ruled-item-num">04</span><div><h3>D&eacute;veloppement</h3><p>Des leviers r&eacute;els pour am&eacute;liorer l'ex&eacute;cution, la structure ou la croissance.</p></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ====== SECTION 3 — ABRIS-TEMPS FEATURED CARD ====== -->
+  <section class="section section--warm">
+    <div class="container container--wide">
+      <div class="featured-card reveal">
+        <div class="featured-card-image">
+          <img src="images/dillon-wanner-Geei_CUnPns-unsplash.jpg" alt="Abris-Temps">
+          <span class="featured-card-pill" style="top: 1.25rem; left: 1.25rem; background: rgba(15, 26, 46, 0.7); color: var(--text-on-dark);">L&eacute;vis, QC</span>
+          <span class="featured-card-pill" style="top: 1.25rem; right: 1.25rem; background: rgba(184, 146, 46, 0.85); color: #fff;">Premi&egrave;re entreprise du portefeuille</span>
+        </div>
+        <div class="featured-card-body">
+          <p style="font-size: 0.8rem; color: var(--text-muted); letter-spacing: 0.04em; margin-bottom: 0.75rem;">Fond&eacute;e en 1997 &middot; ~1.4M$ revenus</p>
+          <h2 class="headline-lg" style="margin-bottom: 1rem;">Abris-Temps</h2>
+          <p class="body-sm" style="color: var(--text-muted); margin-bottom: 1rem;">Manufacturier et installateur d'abris ext&eacute;rieurs sur mesure. Depuis 1997, Abris-Temps con&ccedil;oit et fabrique des abris de qualit&eacute; pour les r&eacute;sidences et commerces du Qu&eacute;bec.</p>
+          <p class="body-sm" style="color: var(--text-muted); margin-bottom: 1.75rem;">Abris-Temps incarne la mani&egrave;re dont Rue Principale veut construire son portefeuille: choisir des entreprises utiles, &eacute;tablies, bien enracin&eacute;es et capables de cro&icirc;tre avec rigueur.</p>
+          <div>
+            <a href="/entreprises/abris-temps" class="btn btn--gold">D&eacute;couvrir Abris-Temps <span class="btn-arrow">&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== SECTION 4 — CTA ====== -->
+  <section class="section section--dark">
+    <div class="container container--narrow" style="text-align: center;">
+      <p class="display-quote reveal" style="color: var(--text-on-dark); margin-bottom: 2rem;">Une entreprise &agrave; la fois, avec intention.</p>
+      <p class="body-lg reveal" style="transition-delay: 0.05s; max-width: 52ch; margin: 0 auto 2.5rem;">Si vous avez b&acirc;ti une entreprise qu&eacute;b&eacute;coise performante et que vous r&eacute;fl&eacute;chissez &agrave; la rel&egrave;ve, Rue Principale souhaite entrer en conversation.</p>
+      <div class="reveal" style="transition-delay: 0.1s;">
+        <a href="/#contact" class="btn btn--gold">Parler de votre entreprise <span class="btn-arrow">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="footer">
+    <div class="footer-top-line" aria-hidden="true"></div>
+    <div class="container">
+      <div class="footer-watermark reveal">
+        <img src="brand/mark-cream.svg" alt="" aria-hidden="true">
+      </div>
+      <div class="footer-grid">
+        <div class="footer-col">
+          <p class="footer-col-title">&Agrave; propos</p>
+          <p>Assurer leur avenir, faire cro&icirc;tre leur histoire.</p>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">Navigation</p>
+          <nav>
+            <a href="/">Accueil</a>
+            <a href="/pour-proprietaires">Pour propri&eacute;taires</a>
+            <a href="/entreprises">Nos entreprises</a>
+            <a href="/notre-approche">Notre approche</a>
+            <a href="/fondateur">Fondateur</a>
+          </nav>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">Contact</p>
+          <a href="mailto:info@rueprincipale.ca">info@rueprincipale.ca</a>
+          <p style="margin-top: 0.5rem;">Qu&eacute;bec &amp; L&eacute;vis, QC, Canada</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Rue Principale. Tous droits r&eacute;serv&eacute;s.</p>
+        <p>Qu&eacute;bec &amp; L&eacute;vis, Qu&eacute;bec</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====== SCRIPTS ====== -->
+  <script>
+    // ---- Scroll reveal ----
+    const reveals = document.querySelectorAll('.reveal, .reveal-line');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // ---- Header scroll state ----
+    const header = document.getElementById('header');
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          header.classList.toggle('scrolled', window.scrollY > 60);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+
+    // ---- Mobile menu ----
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.contains('open');
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = isOpen ? '' : 'hidden';
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // ---- Smooth scroll with header offset ----
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', (e) => {
+        const id = anchor.getAttribute('href');
+        if (id === '#') return;
+        const target = document.querySelector(id);
+        if (target) {
+          e.preventDefault();
+          const offset = 80;
+          const y = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

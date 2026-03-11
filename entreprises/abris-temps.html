@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abris-Temps — Rue Principale</title>
+  <meta name="description" content="Abris-Temps, premi&egrave;re entreprise du portefeuille Rue Principale. Manufacturier et installateur d'abris ext&eacute;rieurs sur mesure depuis 1997.">
+  <meta property="og:title" content="Abris-Temps — Rue Principale">
+  <meta property="og:description" content="Abris-Temps, premi&egrave;re entreprise du portefeuille Rue Principale. Manufacturier et installateur d'abris ext&eacute;rieurs sur mesure depuis 1997.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ========================================
+       RESET & BASE
+       ======================================== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      color: #2a2a28;
+      background-color: #f8f2e8;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background-color: #003399;
+      color: #f8f2e8;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ========================================
+       TOKENS
+       ======================================== */
+    :root {
+      --cream: #f8f2e8;
+      --cream-dark: #f0e8d8;
+      --nuit: #0f1a2e;
+      --nuit-light: #162240;
+      --blue: #003399;
+      --blue-light: #1a4fbf;
+      --gold: #b8922e;
+      --gold-light: #c9a33f;
+      --text-dark: #2a2a28;
+      --text-muted: #6a6a64;
+      --text-on-dark: #f8f2e8;
+      --text-on-dark-muted: #c8bfb0;
+      --border-warm: #e0d8c8;
+      --border-dark: rgba(248, 242, 232, 0.1);
+
+      --font-serif: 'Lora', Georgia, serif;
+      --font-sans: 'Outfit', -apple-system, sans-serif;
+
+      --container: 1200px;
+      --container-narrow: 860px;
+      --container-wide: 1100px;
+      --gutter: clamp(1.5rem, 4vw, 4rem);
+      --section-pad: clamp(5rem, 10vw, 8rem);
+      --section-pad-lg: clamp(7rem, 14vw, 12rem);
+    }
+
+    /* ========================================
+       LAYOUT
+       ======================================== */
+    .container {
+      width: 100%;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+    .container--narrow { max-width: var(--container-narrow); }
+    .container--wide { max-width: var(--container-wide); }
+
+    /* ========================================
+       TYPOGRAPHY
+       ======================================== */
+    .eyebrow {
+      font-family: var(--font-sans);
+      font-size: 0.6875rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .eyebrow::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .headline-xl {
+      font-family: var(--font-serif);
+      font-size: clamp(2.75rem, 7vw + 0.5rem, 7rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      font-weight: 400;
+    }
+
+    .headline-lg {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4.5vw + 0.5rem, 3.75rem);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      font-weight: 400;
+    }
+
+    .headline-md {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 2.5vw + 0.5rem, 2.5rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      font-weight: 400;
+    }
+
+    .body-lg {
+      font-size: clamp(1rem, 0.5vw + 0.875rem, 1.125rem);
+      line-height: 1.75;
+    }
+
+    .body-sm {
+      font-size: 0.9375rem;
+      line-height: 1.7;
+    }
+
+    /* ========================================
+       BUTTONS
+       ======================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-sans);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 0.9rem 2rem;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn--primary {
+      background-color: var(--blue);
+      color: #fff;
+    }
+    .btn--primary:hover {
+      background-color: var(--blue-light);
+      transform: translateY(-1px);
+    }
+
+    .btn--ghost {
+      background: transparent;
+      color: var(--text-dark);
+      border: 1px solid var(--border-warm);
+    }
+    .btn--ghost:hover {
+      border-color: var(--text-muted);
+      background: rgba(0,0,0,0.02);
+    }
+
+    .btn--ghost-dark {
+      background: transparent;
+      color: var(--text-on-dark);
+      border: 1px solid rgba(248, 242, 232, 0.2);
+    }
+    .btn--ghost-dark:hover {
+      border-color: rgba(248, 242, 232, 0.45);
+      background: rgba(248, 242, 232, 0.04);
+    }
+
+    .btn--gold {
+      background-color: var(--gold);
+      color: #fff;
+    }
+    .btn--gold:hover {
+      background-color: var(--gold-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-arrow {
+      display: inline-block;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn:hover .btn-arrow { transform: translateX(3px); }
+
+    /* ========================================
+       SCROLL REVEAL
+       ======================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-line {
+      width: 100%;
+      height: 1px;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-line.visible { transform: scaleX(1); }
+
+    .reveal-stagger > .reveal:nth-child(1) { transition-delay: 0s; }
+    .reveal-stagger > .reveal:nth-child(2) { transition-delay: 0.06s; }
+    .reveal-stagger > .reveal:nth-child(3) { transition-delay: 0.12s; }
+    .reveal-stagger > .reveal:nth-child(4) { transition-delay: 0.18s; }
+    .reveal-stagger > .reveal:nth-child(5) { transition-delay: 0.24s; }
+    .reveal-stagger > .reveal:nth-child(6) { transition-delay: 0.30s; }
+
+    /* ========================================
+       HEADER / NAV
+       ======================================== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.25rem 0;
+      transition: padding 0.4s ease, background-color 0.4s ease;
+    }
+
+    .header.scrolled {
+      padding: 0.75rem 0;
+      background-color: rgba(15, 26, 46, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-mark {
+      height: 28px;
+      width: auto;
+      opacity: 0.9;
+      transition: opacity 0.3s;
+    }
+    .logo-mark:hover { opacity: 1; }
+
+    .nav-links {
+      display: none;
+      list-style: none;
+      gap: 2.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .nav-links { display: flex; }
+      .hamburger { display: none !important; }
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+      color: rgba(248, 242, 232, 0.6);
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--text-on-dark); }
+
+    .nav-cta {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--text-on-dark);
+      padding: 0.6rem 1.5rem;
+      border: 1px solid rgba(248, 242, 232, 0.2);
+      border-radius: 100px;
+      transition: all 0.3s;
+    }
+    .nav-cta:hover {
+      border-color: rgba(248, 242, 232, 0.45);
+      background: rgba(248, 242, 232, 0.05);
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 28px;
+      height: 28px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 201;
+    }
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 1.5px;
+      background: var(--text-on-dark);
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+
+    /* Mobile menu overlay */
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: var(--nuit);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+    .mobile-menu.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .mobile-menu a {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      color: var(--text-on-dark);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s ease, transform 0.4s ease, color 0.3s;
+    }
+    .mobile-menu.open a {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .mobile-menu.open a:nth-child(1) { transition-delay: 0.05s; }
+    .mobile-menu.open a:nth-child(2) { transition-delay: 0.1s; }
+    .mobile-menu.open a:nth-child(3) { transition-delay: 0.15s; }
+    .mobile-menu.open a:nth-child(4) { transition-delay: 0.2s; }
+    .mobile-menu.open a:nth-child(5) { transition-delay: 0.25s; }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    @media (min-width: 768px) {
+      .mobile-menu { display: none; }
+    }
+
+    /* ========================================
+       SECTIONS -- SHARED
+       ======================================== */
+    .section {
+      padding: var(--section-pad) 0;
+    }
+
+    .section--warm { background-color: var(--cream); color: var(--text-dark); }
+    .section--warm-alt { background-color: var(--cream-dark); color: var(--text-dark); }
+    .section--dark { background-color: var(--nuit); color: var(--text-on-dark); }
+
+    .section--dark .eyebrow { color: var(--gold); }
+    .section--warm .eyebrow,
+    .section--warm-alt .eyebrow { color: var(--gold); }
+
+    .section--warm .body-lg,
+    .section--warm-alt .body-lg { color: var(--text-muted); }
+    .section--dark .body-lg { color: var(--text-on-dark-muted); }
+
+    .section-line {
+      height: 1px;
+      margin: clamp(2.5rem, 5vw, 4rem) 0;
+    }
+    .section--warm .section-line,
+    .section--warm-alt .section-line { background-color: var(--border-warm); }
+    .section--dark .section-line { background-color: var(--border-dark); }
+
+    /* ========================================
+       RULED LIST
+       ======================================== */
+    .ruled-list { list-style: none; }
+
+    .ruled-item {
+      padding: clamp(1rem, 2vw, 1.5rem) 0.75rem;
+      border-top: 1px solid var(--border-dark);
+      display: flex;
+      gap: clamp(1rem, 2vw, 1.5rem);
+      align-items: baseline;
+      margin: 0 -0.75rem;
+      border-radius: 4px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      cursor: default;
+    }
+
+    .ruled-item:last-child { border-bottom: 1px solid var(--border-dark); }
+
+    .ruled-item:hover {
+      transform: translateX(4px);
+    }
+
+    .section--dark .ruled-item:hover { background: rgba(248, 242, 232, 0.03); }
+    .section--warm .ruled-item:hover,
+    .section--warm-alt .ruled-item:hover { background: rgba(0, 0, 0, 0.02); }
+
+    .ruled-item-num {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      color: var(--gold);
+      flex-shrink: 0;
+      min-width: 2.5ch;
+      opacity: 0.4;
+      transition: opacity 0.3s ease;
+    }
+
+    .ruled-item:hover .ruled-item-num { opacity: 1; }
+
+    .section--warm .ruled-item { border-color: var(--border-warm); }
+    .section--warm .ruled-item:last-child { border-bottom-color: var(--border-warm); }
+    .section--warm-alt .ruled-item { border-color: var(--border-warm); }
+    .section--warm-alt .ruled-item:last-child { border-bottom-color: var(--border-warm); }
+
+    .ruled-item h3 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.1rem, 1.5vw + 0.4rem, 1.3rem);
+      line-height: 1.3;
+      font-weight: 400;
+      margin-bottom: 0.25rem;
+    }
+
+    .section--dark .ruled-item h3 { color: var(--text-on-dark); }
+    .section--warm .ruled-item h3,
+    .section--warm-alt .ruled-item h3 { color: var(--text-dark); }
+
+    .ruled-item p { font-size: 0.9375rem; line-height: 1.7; }
+    .section--dark .ruled-item p { color: var(--text-on-dark-muted); }
+    .section--warm .ruled-item p,
+    .section--warm-alt .ruled-item p { color: var(--text-muted); }
+
+    /* Ruled item without number */
+    .ruled-item-icon {
+      flex-shrink: 0;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      margin-top: 0.55rem;
+      opacity: 0.4;
+      transition: opacity 0.3s ease;
+    }
+    .ruled-item:hover .ruled-item-icon { opacity: 1; }
+
+    /* ========================================
+       CASE HERO
+       ======================================== */
+    .case-hero {
+      position: relative;
+      min-height: 72vh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      padding-bottom: clamp(4rem, 8vw, 6rem);
+    }
+    .case-hero-bg {
+      position: absolute;
+      inset: -5%;
+    }
+    .case-hero-bg img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .case-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(15,26,46,0.2) 0%, transparent 40%, rgba(15,26,46,0.82) 100%);
+    }
+    .case-hero-darken {
+      position: absolute;
+      inset: 0;
+      background: rgba(15,26,46,0.55);
+    }
+    .case-hero-content {
+      position: relative;
+      z-index: 10;
+      padding-top: 10rem;
+    }
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      font-size: 0.75rem;
+    }
+    .breadcrumb a { color: #8a8070; transition: color 0.3s; }
+    .breadcrumb a:hover { color: var(--text-on-dark); }
+    .breadcrumb span { color: #8a8070; }
+    .breadcrumb .current { color: var(--gold); }
+    .pill {
+      display: inline-flex;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      font-weight: 500;
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      backdrop-filter: blur(8px);
+    }
+    .pill--light { background: rgba(255,255,255,0.15); color: var(--text-on-dark); }
+    .pill--gold { background: var(--gold); color: #fff; }
+
+    .case-hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .case-hero .headline-xl {
+      color: var(--text-on-dark);
+      margin-bottom: 1.5rem;
+      text-shadow: 0 2px 40px rgba(15, 26, 46, 0.5);
+    }
+
+    .case-hero .body-lg {
+      color: var(--text-on-dark-muted);
+      max-width: 52ch;
+    }
+
+    /* ========================================
+       TRANSITION GRID
+       ======================================== */
+    .transition-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(2rem, 5vw, 4rem);
+    }
+    @media (min-width: 1024px) {
+      .transition-grid { grid-template-columns: 0.95fr 1.05fr; }
+    }
+    .build-card {
+      padding: clamp(2rem, 4vw, 3rem);
+      border-radius: 8px;
+      background: rgba(248,242,232,0.04);
+      border: 1px solid rgba(248,242,232,0.1);
+    }
+    .build-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      color: var(--text-on-dark);
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+    .build-item { margin-bottom: 1rem; }
+    .build-item:last-child { margin-bottom: 0; }
+    .build-item-title {
+      font-weight: 600;
+      color: var(--text-on-dark);
+      margin-bottom: 0.25rem;
+    }
+    .build-item-desc {
+      color: var(--text-on-dark-muted);
+      line-height: 1.7;
+    }
+
+    /* ========================================
+       CTA SECTION
+       ======================================== */
+    .cta-section {
+      padding: var(--section-pad-lg) 0;
+    }
+
+    .cta-quote {
+      font-family: var(--font-serif);
+      font-size: clamp(1.75rem, 3.5vw + 0.5rem, 3rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      font-weight: 400;
+      color: var(--text-on-dark);
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .cta-body {
+      color: var(--text-on-dark-muted);
+      font-size: clamp(1rem, 0.5vw + 0.875rem, 1.125rem);
+      line-height: 1.75;
+      max-width: 52ch;
+      margin-bottom: clamp(2rem, 4vw, 3rem);
+    }
+
+    .cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    /* ========================================
+       FOOTER
+       ======================================== */
+    .footer {
+      background-color: var(--nuit);
+      padding: clamp(4rem, 8vw, 6rem) 0 2rem;
+      position: relative;
+    }
+
+    .footer-top-line {
+      position: absolute;
+      top: 0;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--blue), var(--gold), var(--blue), transparent);
+      opacity: 0.3;
+    }
+
+    .footer-watermark {
+      display: flex;
+      justify-content: center;
+      margin-bottom: clamp(3rem, 6vw, 5rem);
+    }
+
+    .footer-watermark img {
+      width: clamp(80px, 12vw, 120px);
+      height: auto;
+      opacity: 0.04;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: clamp(3rem, 6vw, 5rem);
+    }
+
+    .footer-col-title {
+      font-size: 0.6875rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: #8a8070;
+      margin-bottom: 1rem;
+    }
+
+    .footer-col p,
+    .footer-col a {
+      font-size: 0.875rem;
+      color: var(--text-on-dark-muted);
+      line-height: 1.7;
+      transition: color 0.3s;
+    }
+    .footer-col a:hover { color: var(--text-on-dark); }
+
+    .footer-col nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #1a3050;
+      padding-top: 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .footer-bottom p { font-size: 0.75rem; color: #8a8070; }
+
+    /* ========================================
+       RESPONSIVE
+       ======================================== */
+    @media (max-width: 639px) {
+      .case-hero-content { padding-top: 7rem; }
+      .headline-xl { font-size: clamp(2.5rem, 10vw, 3.5rem); }
+    }
+
+    /* ========================================
+       REDUCED MOTION
+       ======================================== */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .reveal-line { transform: scaleX(1); transition: none; }
+      .ruled-item { transition: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====== HEADER ====== -->
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="/" aria-label="Rue Principale">
+          <img src="../brand/mark-cream.svg" alt="Rue Principale" class="logo-mark">
+        </a>
+        <nav>
+          <ul class="nav-links">
+            <li><a href="/pour-proprietaires">Pour propri&eacute;taires</a></li>
+            <li><a href="/entreprises">Nos entreprises</a></li>
+            <li><a href="/notre-approche">Notre approche</a></li>
+            <li><a href="/fondateur">Fondateur</a></li>
+          </ul>
+        </nav>
+        <a href="/#contact" class="nav-cta hide-mobile">Nous joindre</a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/pour-proprietaires" class="mobile-link">Pour propri&eacute;taires</a>
+    <a href="/entreprises" class="mobile-link">Nos entreprises</a>
+    <a href="/notre-approche" class="mobile-link">Notre approche</a>
+    <a href="/fondateur" class="mobile-link">Fondateur</a>
+    <a href="/#contact" class="mobile-link">Nous joindre</a>
+  </div>
+
+  <!-- ====== SECTION 1: CASE HERO ====== -->
+  <section class="case-hero">
+    <div class="case-hero-bg" aria-hidden="true">
+      <img src="../images/dillon-wanner-Geei_CUnPns-unsplash.jpg" alt="Abris-Temps">
+    </div>
+    <div class="case-hero-darken" aria-hidden="true"></div>
+    <div class="case-hero-overlay" aria-hidden="true"></div>
+    <div class="container case-hero-content">
+      <nav class="breadcrumb reveal">
+        <a href="/entreprises">Nos entreprises</a>
+        <span>/</span>
+        <span class="current">Abris-Temps</span>
+      </nav>
+      <div class="case-hero-pills reveal" style="transition-delay: 0.05s;">
+        <span class="pill pill--light">L&eacute;vis, QC</span>
+        <span class="pill pill--light">Depuis 1997</span>
+        <span class="pill pill--gold">Premi&egrave;re entreprise du portefeuille</span>
+      </div>
+      <h1 class="headline-xl reveal" style="transition-delay: 0.1s;">Abris-Temps</h1>
+      <p class="body-lg reveal" style="transition-delay: 0.15s;">Une entreprise bien &eacute;tablie, utile, rentable et enracin&eacute;e dans son milieu. Abris-Temps repr&eacute;sente la premi&egrave;re d&eacute;monstration concr&egrave;te de la mani&egrave;re dont Rue Principale veut b&acirc;tir.</p>
+    </div>
+  </section>
+
+  <!-- ====== SECTION 2: WHY THIS BUSINESS ====== -->
+  <section class="section section--warm">
+    <div class="container container--narrow">
+      <p class="eyebrow reveal">Le choix</p>
+      <h2 class="headline-lg reveal" style="transition-delay: 0.05s;">Une entreprise qui correspond &agrave; notre mani&egrave;re de penser</h2>
+      <div class="reveal-line section-line reveal" style="transition-delay: 0.08s;"></div>
+      <p class="body-lg reveal" style="transition-delay: 0.1s;">Fond&eacute;e en 1997, Abris-Temps con&ccedil;oit, fabrique et installe des abris ext&eacute;rieurs sur mesure pour les r&eacute;sidences et commerces du Qu&eacute;bec. Depuis son atelier de L&eacute;vis, l'entreprise a b&acirc;ti une r&eacute;putation solide gr&acirc;ce &agrave; la qualit&eacute; de ses produits et &agrave; un service de proximit&eacute; qui la distingue.</p>
+      <p class="body-lg reveal" style="transition-delay: 0.14s; margin-top: 1.25rem;">Avec un chiffre d'affaires d'environ 1,4&nbsp;M$, une &eacute;quipe exp&eacute;riment&eacute;e en place et une base de clients fid&egrave;les dans la grande r&eacute;gion de Qu&eacute;bec, Abris-Temps est exactement le type d'entreprise que Rue Principale cherche &agrave; pr&eacute;server: utile, bien op&eacute;r&eacute;e et profond&eacute;ment enracin&eacute;e dans sa communaut&eacute;.</p>
+    </div>
+  </section>
+
+  <!-- ====== SECTION 3: STRENGTHS ====== -->
+  <section class="section section--warm-alt">
+    <div class="container container--narrow">
+      <p class="eyebrow reveal">Les forces</p>
+      <h2 class="headline-lg reveal" style="transition-delay: 0.05s;">Une base solide, des leviers r&eacute;els</h2>
+      <div class="reveal-line section-line reveal" style="transition-delay: 0.08s;"></div>
+      <ul class="ruled-list reveal-stagger">
+        <li class="ruled-item reveal"><span class="ruled-item-icon" aria-hidden="true"></span><div><h3>Une demande tangible</h3><p>Des produits utiles pour des besoins saisonniers r&eacute;els, tant r&eacute;sidentiels que commerciaux.</p></div></li>
+        <li class="ruled-item reveal"><span class="ruled-item-icon" aria-hidden="true"></span><div><h3>Un savoir-faire reconnu</h3><p>Une r&eacute;putation construite sur la qualit&eacute; des produits, de l'installation et du service.</p></div></li>
+        <li class="ruled-item reveal"><span class="ruled-item-icon" aria-hidden="true"></span><div><h3>Une base solide</h3><p>Une entreprise rentable, bien implant&eacute;e et d&eacute;j&agrave; capable de g&eacute;n&eacute;rer des r&eacute;sultats stables.</p></div></li>
+        <li class="ruled-item reveal"><span class="ruled-item-icon" aria-hidden="true"></span><div><h3>Des leviers clairs</h3><p>Des occasions concr&egrave;tes d'am&eacute;liorer les processus, l'exp&eacute;rience client, les syst&egrave;mes et le d&eacute;veloppement commercial.</p></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ====== SECTION 4: TRANSITION ====== -->
+  <section class="section section--dark">
+    <div class="container container--wide">
+      <div class="transition-grid">
+        <div>
+          <p class="eyebrow reveal">La transition</p>
+          <h2 class="headline-lg reveal" style="transition-delay: 0.05s; color: var(--text-on-dark); max-width: 18ch;">Observer, comprendre et pr&eacute;server avant de transformer</h2>
+          <div class="reveal-line section-line reveal" style="transition-delay: 0.08s;"></div>
+          <p class="body-lg reveal" style="transition-delay: 0.1s;">La transition repose sur un principe simple: comprendre d'abord ce qui fonctionne, stabiliser ensuite, puis seulement am&eacute;liorer avec discernement. Les employ&eacute;s restent en place, les clients sont accompagn&eacute;s sans interruption et l'identit&eacute; de l'entreprise est respect&eacute;e.</p>
+          <p class="body-lg reveal" style="transition-delay: 0.14s; margin-top: 1.25rem;">C'est seulement une fois la continuit&eacute; assur&eacute;e que les investissements en modernisation prennent leur place.</p>
+        </div>
+        <div class="build-card reveal" style="transition-delay: 0.12s;">
+          <h3>Ce que Rue Principale veut y b&acirc;tir</h3>
+          <div class="build-item">
+            <p class="build-item-title body-sm">Pr&eacute;server ce qui fait la force de l'entreprise</p>
+            <p class="build-item-desc body-sm">Maintenir la qualit&eacute; du produit, la r&eacute;putation et la proximit&eacute; avec les clients.</p>
+          </div>
+          <div class="build-item">
+            <p class="build-item-title body-sm">Renforcer l'ex&eacute;cution</p>
+            <p class="build-item-desc body-sm">Structurer davantage les op&eacute;rations, les syst&egrave;mes et les processus afin de soutenir la croissance.</p>
+          </div>
+          <div class="build-item">
+            <p class="build-item-title body-sm">Investir avec discipline</p>
+            <p class="build-item-desc body-sm">Allouer le capital l&agrave; o&ugrave; il am&eacute;liore r&eacute;ellement la qualit&eacute;, l'efficacit&eacute; ou la capacit&eacute; de d&eacute;veloppement.</p>
+          </div>
+          <div class="build-item">
+            <p class="build-item-title body-sm">D&eacute;velopper sur des bases solides</p>
+            <p class="build-item-desc body-sm">Chercher la croissance sans d&eacute;naturer l'entreprise ni perdre ce qui a fait son succ&egrave;s.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== SECTION 5: VISION ====== -->
+  <section class="section section--warm">
+    <div class="container container--narrow">
+      <p class="eyebrow reveal">La vision</p>
+      <h2 class="headline-lg reveal" style="transition-delay: 0.05s;">Moderniser sans d&eacute;naturer</h2>
+      <div class="reveal-line section-line reveal" style="transition-delay: 0.08s;"></div>
+      <p class="body-lg reveal" style="transition-delay: 0.1s;">Le potentiel de cr&eacute;ation de valeur est important: optimisation du service &agrave; la client&egrave;le, modernisation des syst&egrave;mes internes et des processus de fabrication, efforts en marketing et communications, et exploration de nouveaux territoires lorsque les bases seront suffisamment solides.</p>
+      <p class="body-lg reveal" style="transition-delay: 0.14s; margin-top: 1.25rem;">L'objectif est clair: faire d'Abris-Temps une r&eacute;f&eacute;rence encore plus forte au Qu&eacute;bec, tout en conservant la qualit&eacute; du produit, la fiabilit&eacute; du service et l'approche humaine qui d&eacute;finissent l'entreprise depuis 1997.</p>
+    </div>
+  </section>
+
+  <!-- ====== SECTION 6: CTA ====== -->
+  <section class="section--dark cta-section">
+    <div class="container container--narrow">
+      <p class="cta-quote reveal">&laquo;&nbsp;Une premi&egrave;re preuve, pas un point final.&nbsp;&raquo;</p>
+      <p class="cta-body reveal" style="transition-delay: 0.05s;">Abris-Temps est la premi&egrave;re entreprise du portefeuille Rue Principale. Elle montre d&eacute;j&agrave; la direction: choisir avec discernement, pr&eacute;server avec s&eacute;rieux et b&acirc;tir avec patience.</p>
+      <div class="cta-buttons reveal" style="transition-delay: 0.1s;">
+        <a href="/#contact" class="btn btn--gold">Parler de votre entreprise</a>
+        <a href="/entreprises" class="btn btn--ghost-dark">Retour au portefeuille <span class="btn-arrow">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="footer">
+    <div class="footer-top-line" aria-hidden="true"></div>
+    <div class="container">
+      <div class="footer-watermark reveal">
+        <img src="../brand/mark-cream.svg" alt="" aria-hidden="true">
+      </div>
+      <div class="footer-grid">
+        <div class="footer-col">
+          <p class="footer-col-title">&Agrave; propos</p>
+          <p>Assurer leur avenir, faire cro&icirc;tre leur histoire.</p>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">Navigation</p>
+          <nav>
+            <a href="/">Accueil</a>
+            <a href="/pour-proprietaires">Pour propri&eacute;taires</a>
+            <a href="/entreprises">Nos entreprises</a>
+            <a href="/notre-approche">Notre approche</a>
+            <a href="/fondateur">Fondateur</a>
+          </nav>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">Contact</p>
+          <a href="mailto:info@rueprincipale.ca">info@rueprincipale.ca</a>
+          <p style="margin-top: 0.5rem;">Qu&eacute;bec &amp; L&eacute;vis, QC, Canada</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Rue Principale. Tous droits r&eacute;serv&eacute;s.</p>
+        <p>Qu&eacute;bec &amp; L&eacute;vis, Qu&eacute;bec</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====== SCRIPTS ====== -->
+  <script>
+    // ---- Scroll reveal ----
+    const reveals = document.querySelectorAll('.reveal, .reveal-line');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // ---- Header scroll state ----
+    const header = document.getElementById('header');
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          header.classList.toggle('scrolled', window.scrollY > 60);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+
+    // ---- Mobile menu ----
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.contains('open');
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = isOpen ? '' : 'hidden';
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // ---- Smooth scroll with header offset ----
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', (e) => {
+        const id = anchor.getAttribute('href');
+        if (id === '#') return;
+        const target = document.querySelector(id);
+        if (target) {
+          e.preventDefault();
+          const offset = 80;
+          const y = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

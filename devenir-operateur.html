@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Devenir op&eacute;rateur &mdash; Rue Principale</title>
+  <meta name="description" content="Pour des dirigeants qui veulent b&acirc;tir dans la dur&eacute;e. D&eacute;couvrez les occasions de diriger une PME qu&eacute;b&eacute;coise performante avec Rue Principale.">
+  <meta property="og:title" content="Devenir op&eacute;rateur &mdash; Rue Principale">
+  <meta property="og:description" content="Pour des dirigeants qui veulent b&acirc;tir dans la dur&eacute;e. D&eacute;couvrez les occasions de diriger une PME qu&eacute;b&eacute;coise performante avec Rue Principale.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rueprincipale.ca/devenir-operateur">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ========================================
+       RESET & BASE
+       ======================================== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      color: #2a2a28;
+      background-color: #f8f2e8;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background-color: #003399;
+      color: #f8f2e8;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ========================================
+       TOKENS
+       ======================================== */
+    :root {
+      --cream: #f8f2e8;
+      --cream-dark: #f0e8d8;
+      --nuit: #0f1a2e;
+      --nuit-light: #162240;
+      --blue: #003399;
+      --blue-light: #1a4fbf;
+      --gold: #b8922e;
+      --gold-light: #c9a33f;
+      --text-dark: #2a2a28;
+      --text-muted: #6a6a64;
+      --text-on-dark: #f8f2e8;
+      --text-on-dark-muted: #c8bfb0;
+      --border-warm: #e0d8c8;
+      --border-dark: rgba(248, 242, 232, 0.1);
+
+      --font-serif: 'Lora', Georgia, serif;
+      --font-sans: 'Outfit', -apple-system, sans-serif;
+
+      --container: 1200px;
+      --container-narrow: 860px;
+      --container-wide: 1100px;
+      --gutter: clamp(1.5rem, 4vw, 4rem);
+      --section-pad: clamp(5rem, 10vw, 8rem);
+      --section-pad-lg: clamp(7rem, 14vw, 12rem);
+    }
+
+    /* ========================================
+       LAYOUT
+       ======================================== */
+    .container {
+      width: 100%;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+    .container--narrow { max-width: var(--container-narrow); }
+    .container--wide { max-width: var(--container-wide); }
+
+    /* ========================================
+       TYPOGRAPHY
+       ======================================== */
+    .eyebrow {
+      font-family: var(--font-sans);
+      font-size: 0.6875rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .eyebrow::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .headline-xl {
+      font-family: var(--font-serif);
+      font-size: clamp(2.75rem, 7vw + 0.5rem, 7rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      font-weight: 400;
+    }
+
+    .headline-lg {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4.5vw + 0.5rem, 3.75rem);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      font-weight: 400;
+    }
+
+    .headline-md {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 2.5vw + 0.5rem, 2.5rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      font-weight: 400;
+    }
+
+    .body-lg {
+      font-size: clamp(1rem, 0.5vw + 0.875rem, 1.125rem);
+      line-height: 1.75;
+    }
+
+    .body-sm {
+      font-size: 0.9375rem;
+      line-height: 1.7;
+    }
+
+    /* ========================================
+       BUTTONS
+       ======================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-sans);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 0.9rem 2rem;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn--primary {
+      background-color: var(--blue);
+      color: #fff;
+    }
+    .btn--primary:hover {
+      background-color: var(--blue-light);
+      transform: translateY(-1px);
+    }
+
+    .btn--ghost {
+      background: transparent;
+      color: var(--text-dark);
+      border: 1px solid var(--border-warm);
+    }
+    .btn--ghost:hover {
+      border-color: var(--text-muted);
+      background: rgba(0,0,0,0.02);
+    }
+
+    .btn--ghost-dark {
+      background: transparent;
+      color: var(--text-on-dark);
+      border: 1px solid rgba(248, 242, 232, 0.2);
+    }
+    .btn--ghost-dark:hover {
+      border-color: rgba(248, 242, 232, 0.45);
+      background: rgba(248, 242, 232, 0.04);
+    }
+
+    .btn--gold {
+      background-color: var(--gold);
+      color: #fff;
+    }
+    .btn--gold:hover {
+      background-color: var(--gold-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-arrow {
+      display: inline-block;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn:hover .btn-arrow { transform: translateX(3px); }
+
+    /* ========================================
+       SCROLL REVEAL
+       ======================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-line {
+      width: 100%;
+      height: 1px;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-line.visible { transform: scaleX(1); }
+
+    .reveal-stagger > .reveal:nth-child(1) { transition-delay: 0s; }
+    .reveal-stagger > .reveal:nth-child(2) { transition-delay: 0.06s; }
+    .reveal-stagger > .reveal:nth-child(3) { transition-delay: 0.12s; }
+    .reveal-stagger > .reveal:nth-child(4) { transition-delay: 0.18s; }
+    .reveal-stagger > .reveal:nth-child(5) { transition-delay: 0.24s; }
+    .reveal-stagger > .reveal:nth-child(6) { transition-delay: 0.30s; }
+
+    /* ========================================
+       HEADER / NAV
+       ======================================== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.25rem 0;
+      transition: padding 0.4s ease, background-color 0.4s ease;
+    }
+
+    .header.scrolled {
+      padding: 0.75rem 0;
+      background-color: rgba(15, 26, 46, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-mark {
+      height: 28px;
+      width: auto;
+      opacity: 0.9;
+      transition: opacity 0.3s;
+    }
+    .logo-mark:hover { opacity: 1; }
+
+    .nav-links {
+      display: none;
+      list-style: none;
+      gap: 2.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .nav-links { display: flex; }
+      .hamburger { display: none !important; }
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+      color: rgba(248, 242, 232, 0.6);
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--text-on-dark); }
+
+    .nav-cta {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--text-on-dark);
+      padding: 0.6rem 1.5rem;
+      border: 1px solid rgba(248, 242, 232, 0.2);
+      border-radius: 100px;
+      transition: all 0.3s;
+    }
+    .nav-cta:hover {
+      border-color: rgba(248, 242, 232, 0.45);
+      background: rgba(248, 242, 232, 0.05);
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 28px;
+      height: 28px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 201;
+    }
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 1.5px;
+      background: var(--text-on-dark);
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+
+    /* Mobile menu overlay */
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: var(--nuit);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+    .mobile-menu.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .mobile-menu a {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      color: var(--text-on-dark);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s ease, transform 0.4s ease, color 0.3s;
+    }
+    .mobile-menu.open a {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .mobile-menu.open a:nth-child(1) { transition-delay: 0.05s; }
+    .mobile-menu.open a:nth-child(2) { transition-delay: 0.1s; }
+    .mobile-menu.open a:nth-child(3) { transition-delay: 0.15s; }
+    .mobile-menu.open a:nth-child(4) { transition-delay: 0.2s; }
+    .mobile-menu.open a:nth-child(5) { transition-delay: 0.25s; }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    @media (min-width: 768px) {
+      .mobile-menu { display: none; }
+    }
+
+    /* ========================================
+       SECTIONS — SHARED
+       ======================================== */
+    .section {
+      padding: var(--section-pad) 0;
+    }
+
+    .section--warm { background-color: var(--cream); color: var(--text-dark); }
+    .section--warm-alt { background-color: var(--cream-dark); color: var(--text-dark); }
+    .section--dark { background-color: var(--nuit); color: var(--text-on-dark); }
+
+    .section--dark .eyebrow { color: var(--gold); }
+    .section--warm .eyebrow,
+    .section--warm-alt .eyebrow { color: var(--gold); }
+
+    .section--warm .body-lg,
+    .section--warm-alt .body-lg { color: var(--text-muted); }
+    .section--dark .body-lg { color: var(--text-on-dark-muted); }
+
+    .section-line {
+      height: 1px;
+      margin: clamp(2.5rem, 5vw, 4rem) 0;
+    }
+    .section--warm .section-line,
+    .section--warm-alt .section-line { background-color: var(--border-warm); }
+    .section--dark .section-line { background-color: var(--border-dark); }
+
+    /* ========================================
+       RULED LIST
+       ======================================== */
+    .ruled-list { list-style: none; }
+
+    .ruled-item {
+      padding: clamp(1rem, 2vw, 1.5rem) 0.75rem;
+      border-top: 1px solid var(--border-dark);
+      display: flex;
+      gap: clamp(1rem, 2vw, 1.5rem);
+      align-items: baseline;
+      margin: 0 -0.75rem;
+      border-radius: 4px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      cursor: default;
+    }
+
+    .ruled-item:last-child { border-bottom: 1px solid var(--border-dark); }
+
+    .ruled-item:hover {
+      transform: translateX(4px);
+    }
+
+    .section--dark .ruled-item:hover { background: rgba(248, 242, 232, 0.03); }
+    .section--warm .ruled-item:hover,
+    .section--warm-alt .ruled-item:hover { background: rgba(0, 0, 0, 0.02); }
+
+    .ruled-item-num {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      color: var(--gold);
+      flex-shrink: 0;
+      min-width: 2.5ch;
+      opacity: 0.4;
+      transition: opacity 0.3s ease;
+    }
+
+    .ruled-item:hover .ruled-item-num { opacity: 1; }
+
+    .section--warm .ruled-item { border-color: var(--border-warm); }
+    .section--warm .ruled-item:last-child { border-bottom-color: var(--border-warm); }
+    .section--warm-alt .ruled-item { border-color: var(--border-warm); }
+    .section--warm-alt .ruled-item:last-child { border-bottom-color: var(--border-warm); }
+
+    .ruled-item h3 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.1rem, 1.5vw + 0.4rem, 1.3rem);
+      line-height: 1.3;
+      font-weight: 400;
+      margin-bottom: 0.25rem;
+    }
+
+    .section--dark .ruled-item h3 { color: var(--text-on-dark); }
+    .section--warm .ruled-item h3,
+    .section--warm-alt .ruled-item h3 { color: var(--text-dark); }
+
+    .ruled-item p { font-size: 0.9375rem; line-height: 1.7; }
+    .section--dark .ruled-item p { color: var(--text-on-dark-muted); }
+    .section--warm .ruled-item p,
+    .section--warm-alt .ruled-item p { color: var(--text-muted); }
+
+    /* ========================================
+       FOOTER
+       ======================================== */
+    .footer {
+      background-color: var(--nuit);
+      padding: clamp(4rem, 8vw, 6rem) 0 2rem;
+      position: relative;
+    }
+
+    .footer-top-line {
+      position: absolute;
+      top: 0;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--blue), var(--gold), var(--blue), transparent);
+      opacity: 0.3;
+    }
+
+    .footer-watermark {
+      display: flex;
+      justify-content: center;
+      margin-bottom: clamp(3rem, 6vw, 5rem);
+    }
+
+    .footer-watermark img {
+      width: clamp(80px, 12vw, 120px);
+      height: auto;
+      opacity: 0.04;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: clamp(3rem, 6vw, 5rem);
+    }
+
+    .footer-col-title {
+      font-size: 0.6875rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: #8a8070;
+      margin-bottom: 1rem;
+    }
+
+    .footer-col p,
+    .footer-col a {
+      font-size: 0.875rem;
+      color: var(--text-on-dark-muted);
+      line-height: 1.7;
+      transition: color 0.3s;
+    }
+    .footer-col a:hover { color: var(--text-on-dark); }
+
+    .footer-col nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #1a3050;
+      padding-top: 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .footer-bottom p { font-size: 0.75rem; color: #8a8070; }
+
+    /* ========================================
+       PAGE HERO
+       ======================================== */
+    .page-hero {
+      background-color: var(--nuit);
+      padding-top: clamp(10rem, 16vw, 14rem);
+      padding-bottom: clamp(5rem, 10vw, 8rem);
+    }
+    .page-hero .eyebrow { color: var(--gold); }
+    .page-hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 5.5vw + 0.5rem, 5rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--text-on-dark);
+      max-width: 14ch;
+      margin-bottom: 1.75rem;
+    }
+    .page-hero .body-lg { color: var(--text-on-dark-muted); max-width: 58ch; margin-bottom: 2rem; }
+    .page-hero .hero-ctas { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+    /* ========================================
+       DISPLAY QUOTE
+       ======================================== */
+    .display-quote {
+      font-family: var(--font-serif);
+      font-size: clamp(1.75rem, 3vw + 0.5rem, 2.75rem);
+      line-height: 1.2;
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    /* ========================================
+       RESPONSIVE
+       ======================================== */
+    @media (max-width: 639px) {
+      .headline-xl { font-size: clamp(2.5rem, 10vw, 3.5rem); }
+    }
+
+    /* ========================================
+       REDUCED MOTION
+       ======================================== */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .reveal-line { transform: scaleX(1); transition: none; }
+      .ruled-item { transition: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====== HEADER ====== -->
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="/" aria-label="Rue Principale">
+          <img src="brand/mark-cream.svg" alt="Rue Principale" class="logo-mark">
+        </a>
+        <nav>
+          <ul class="nav-links">
+            <li><a href="/pour-proprietaires">Pour propri&eacute;taires</a></li>
+            <li><a href="/entreprises">Nos entreprises</a></li>
+            <li><a href="/notre-approche">Notre approche</a></li>
+            <li><a href="/fondateur">Fondateur</a></li>
+          </ul>
+        </nav>
+        <a href="/#contact" class="nav-cta hide-mobile">Nous joindre</a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/pour-proprietaires" class="mobile-link">Pour propri&eacute;taires</a>
+    <a href="/entreprises" class="mobile-link">Nos entreprises</a>
+    <a href="/notre-approche" class="mobile-link">Notre approche</a>
+    <a href="/fondateur" class="mobile-link">Fondateur</a>
+    <a href="/#contact" class="mobile-link">Nous joindre</a>
+  </div>
+
+  <!-- ====== SECTION 1 — HERO ====== -->
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow reveal">Devenir op&eacute;rateur</p>
+      <h1 class="reveal" style="transition-delay: 0.06s;">Pour des dirigeants qui veulent b&acirc;tir dans la dur&eacute;e</h1>
+      <p class="body-lg reveal" style="transition-delay: 0.12s;">Rue Principale souhaite s'entourer, dans les bonnes situations, de dirigeants capables d'assumer des responsabilit&eacute;s r&eacute;elles dans l'exploitation et le d&eacute;veloppement de PME qu&eacute;b&eacute;coises performantes.</p>
+      <div class="hero-ctas reveal" style="transition-delay: 0.18s;">
+        <a href="/#contact" class="btn btn--primary">Entrer en conversation <span class="btn-arrow">&rarr;</span></a>
+        <a href="/notre-approche" class="btn btn--ghost-dark">D&eacute;couvrir notre approche</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== SECTION 2 — PROFILE ====== -->
+  <section class="section section--warm-alt">
+    <div class="container container--narrow">
+      <p class="eyebrow reveal">Profil recherch&eacute;</p>
+      <h2 class="headline-lg reveal" style="max-width: 18ch; margin-bottom: 1rem;">Le profil que nous recherchons</h2>
+      <p class="body-lg reveal" style="max-width: 52ch; margin-bottom: clamp(2rem, 4vw, 3rem);">Cette d&eacute;marche s'adresse &agrave; des leaders qui ne cherchent pas simplement un poste, mais une occasion de b&acirc;tir, de diriger et de cr&eacute;er de la valeur dans le temps.</p>
+      <div class="section-line reveal-line"></div>
+      <ul class="ruled-list reveal-stagger">
+        <li class="ruled-item reveal">
+          <span class="ruled-item-num">01</span>
+          <div>
+            <h3>Exp&eacute;rience r&eacute;elle de gestion</h3>
+            <p>Vous avez d&eacute;j&agrave; dirig&eacute; des &eacute;quipes, des op&eacute;rations ou une unit&eacute; d'affaires avec responsabilit&eacute;.</p>
+          </div>
+        </li>
+        <li class="ruled-item reveal">
+          <span class="ruled-item-num">02</span>
+          <div>
+            <h3>Solide capacit&eacute; d'ex&eacute;cution</h3>
+            <p>Vous savez faire avancer les choses, prendre des d&eacute;cisions et g&eacute;rer le quotidien avec discipline.</p>
+          </div>
+        </li>
+        <li class="ruled-item reveal">
+          <span class="ruled-item-num">03</span>
+          <div>
+            <h3>Leadership cr&eacute;dible</h3>
+            <p>Vous inspirez confiance et vous &ecirc;tes capable de rallier une &eacute;quipe autour d'objectifs clairs.</p>
+          </div>
+        </li>
+        <li class="ruled-item reveal">
+          <span class="ruled-item-num">04</span>
+          <div>
+            <h3>R&eacute;flexe entrepreneurial</h3>
+            <p>Vous pensez en propri&eacute;taire, avec une attention au long terme, &agrave; la performance et &agrave; la cr&eacute;ation de valeur.</p>
+          </div>
+        </li>
+        <li class="ruled-item reveal">
+          <span class="ruled-item-num">05</span>
+          <div>
+            <h3>Volont&eacute; de b&acirc;tir</h3>
+            <p>Vous &ecirc;tes motiv&eacute; par l'id&eacute;e de d&eacute;velopper une entreprise durable, et non par un simple titre.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ====== SECTION 3 — PRINCIPLES ====== -->
+  <section class="section section--dark">
+    <div class="container container--narrow">
+      <p class="eyebrow reveal">Principes</p>
+      <h2 class="headline-lg reveal" style="max-width: 20ch; margin-bottom: 1rem;">Une occasion de diriger avec un vrai niveau de responsabilit&eacute;</h2>
+      <p class="body-lg reveal" style="max-width: 52ch; margin-bottom: 1rem;">Selon l'entreprise, son contexte et la personne, certaines occasions pourront offrir un niveau &eacute;lev&eacute; d'autonomie dans l'ex&eacute;cution, de responsabilit&eacute; dans les r&eacute;sultats et d'alignement &agrave; long terme.</p>
+      <p class="body-lg reveal" style="max-width: 52ch; margin-bottom: clamp(2rem, 4vw, 3rem);">Rue Principale ne cherche pas &agrave; imposer un mod&egrave;le unique. Nous croyons plut&ocirc;t que les bonnes structures se construisent en fonction de la r&eacute;alit&eacute; de l'entreprise, du stade de d&eacute;veloppement et de la qualit&eacute; du dirigeant.</p>
+      <div class="section-line reveal-line"></div>
+      <ul class="ruled-list reveal-stagger">
+        <li class="ruled-item reveal">
+          <div>
+            <h3>Autonomie</h3>
+            <p>Nous valorisons des dirigeants capables de prendre en main l'ex&eacute;cution et de faire avancer l'entreprise au quotidien.</p>
+          </div>
+        </li>
+        <li class="ruled-item reveal">
+          <div>
+            <h3>Responsabilit&eacute;</h3>
+            <p>L'autonomie vient avec des attentes &eacute;lev&eacute;es en mati&egrave;re de jugement, de rigueur et de r&eacute;sultats.</p>
+          </div>
+        </li>
+        <li class="ruled-item reveal">
+          <div>
+            <h3>Alignement</h3>
+            <p>Nous croyons &agrave; des structures qui favorisent un v&eacute;ritable alignement entre la performance de l'entreprise, la cr&eacute;ation de valeur et l'engagement du dirigeant.</p>
+          </div>
+        </li>
+        <li class="ruled-item reveal">
+          <div>
+            <h3>Long terme</h3>
+            <p>Nous cherchons &agrave; b&acirc;tir des entreprises solides, pas &agrave; optimiser des r&eacute;sultats de court terme au d&eacute;triment des fondations.</p>
+          </div>
+        </li>
+        <li class="ruled-item reveal">
+          <div>
+            <h3>Clart&eacute;</h3>
+            <p>Les r&ocirc;les, les responsabilit&eacute;s, les attentes et les objectifs doivent &ecirc;tre compris clairement d&egrave;s le d&eacute;part.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ====== SECTION 4 — SUPPORT ====== -->
+  <section class="section section--warm">
+    <div class="container container--narrow">
+      <p class="eyebrow reveal">Notre engagement</p>
+      <h2 class="headline-lg reveal" style="max-width: 20ch; margin-bottom: 1rem;">Ce que nous voulons apporter aux bons dirigeants</h2>
+      <p class="body-lg reveal" style="max-width: 52ch; margin-bottom: clamp(2rem, 4vw, 3rem);">Un bon op&eacute;rateur a besoin d'un cadre clair, de confiance et d'un environnement propice &agrave; l'ex&eacute;cution.</p>
+      <div class="section-line reveal-line"></div>
+      <ul class="ruled-list reveal-stagger">
+        <li class="ruled-item reveal">
+          <div>
+            <h3>Une vision de long terme</h3>
+            <p>Pour b&acirc;tir avec coh&eacute;rence et &eacute;viter les d&eacute;cisions dict&eacute;es par l'urgence ou le court terme.</p>
+          </div>
+        </li>
+        <li class="ruled-item reveal">
+          <div>
+            <h3>Un regard entrepreneurial</h3>
+            <p>Ax&eacute; sur les op&eacute;rations, la discipline, les priorit&eacute;s r&eacute;elles et la cr&eacute;ation de valeur concr&egrave;te.</p>
+          </div>
+        </li>
+        <li class="ruled-item reveal">
+          <div>
+            <h3>Un partenaire impliqu&eacute;</h3>
+            <p>Capable d'accompagner les d&eacute;cisions importantes, de structurer la suite et de soutenir le d&eacute;veloppement.</p>
+          </div>
+        </li>
+        <li class="ruled-item reveal">
+          <div>
+            <h3>Une recherche d'alignement</h3>
+            <p>Pour que le dirigeant ait un int&eacute;r&ecirc;t r&eacute;el dans la qualit&eacute; de ce qu'il contribue &agrave; construire.</p>
+          </div>
+        </li>
+        <li class="ruled-item reveal">
+          <div>
+            <h3>Une volont&eacute; de simplifier</h3>
+            <p>Moins de complexit&eacute; inutile, plus de clart&eacute; et d'efficacit&eacute;.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ====== SECTION 5 — EXPECTATIONS ====== -->
+  <section class="section section--warm-alt">
+    <div class="container container--narrow">
+      <p class="eyebrow reveal">Exigences</p>
+      <h2 class="headline-lg reveal" style="max-width: 18ch; margin-bottom: 1.5rem;">Ce que cela exige</h2>
+      <p class="body-lg reveal" style="max-width: 52ch; margin-bottom: 1rem;">Diriger une entreprise demande plus que de bonnes intentions. Cela exige de la constance, du jugement, de la cr&eacute;dibilit&eacute; et une capacit&eacute; &agrave; faire avancer une organisation dans la r&eacute;alit&eacute; du terrain.</p>
+      <p class="body-lg reveal" style="max-width: 52ch; margin-bottom: 1rem;">Le parcours exact importe moins que la qualit&eacute; du jugement, la profondeur de l'exp&eacute;rience et la capacit&eacute; r&eacute;elle de diriger.</p>
+      <p class="body-lg reveal" style="max-width: 52ch;">Cette d&eacute;marche ne s'adresse pas &agrave; des personnes qui recherchent un r&ocirc;le purement th&eacute;orique, un cadre flou ou une opportunit&eacute; d&eacute;finie principalement par un titre. Elle s'adresse &agrave; des dirigeants qui veulent prendre en charge une r&eacute;alit&eacute; concr&egrave;te, faire face &agrave; des responsabilit&eacute;s r&eacute;elles et contribuer &agrave; b&acirc;tir une entreprise plus forte dans le temps.</p>
+    </div>
+  </section>
+
+  <!-- ====== SECTION 6 — CTA ====== -->
+  <section class="section section--dark" style="padding: var(--section-pad-lg) 0;">
+    <div class="container container--narrow" style="text-align: center;">
+      <p class="display-quote reveal" style="color: var(--text-on-dark); margin-bottom: 1.5rem;">Vous vous reconnaissez dans cette approche?</p>
+      <p class="body-lg reveal" style="color: var(--text-on-dark-muted); max-width: 52ch; margin: 0 auto 2.5rem;">La premi&egrave;re &eacute;tape reste simple&nbsp;: une conversation directe pour explorer le type d'occasions que Rue Principale pourrait d&eacute;velopper &agrave; l'avenir.</p>
+      <div class="reveal">
+        <a href="/#contact" class="btn btn--gold">Entrer en conversation <span class="btn-arrow">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="footer">
+    <div class="footer-top-line" aria-hidden="true"></div>
+    <div class="container">
+      <div class="footer-watermark reveal">
+        <img src="brand/mark-cream.svg" alt="" aria-hidden="true">
+      </div>
+      <div class="footer-grid">
+        <div class="footer-col">
+          <p class="footer-col-title">&Agrave; propos</p>
+          <p>Assurer leur avenir, faire cro&icirc;tre leur histoire.</p>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">Navigation</p>
+          <nav>
+            <a href="/">Accueil</a>
+            <a href="/pour-proprietaires">Pour propri&eacute;taires</a>
+            <a href="/entreprises">Nos entreprises</a>
+            <a href="/notre-approche">Notre approche</a>
+            <a href="/fondateur">Fondateur</a>
+          </nav>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">Contact</p>
+          <a href="mailto:info@rueprincipale.ca">info@rueprincipale.ca</a>
+          <p style="margin-top: 0.5rem;">Qu&eacute;bec &amp; L&eacute;vis, QC, Canada</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Rue Principale. Tous droits r&eacute;serv&eacute;s.</p>
+        <p>Qu&eacute;bec &amp; L&eacute;vis, Qu&eacute;bec</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====== SCRIPTS ====== -->
+  <script>
+    // ---- Scroll reveal ----
+    const reveals = document.querySelectorAll('.reveal, .reveal-line');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // ---- Header scroll state ----
+    const header = document.getElementById('header');
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          header.classList.toggle('scrolled', window.scrollY > 60);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+
+    // ---- Mobile menu ----
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.contains('open');
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = isOpen ? '' : 'hidden';
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // ---- Smooth scroll with header offset ----
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', (e) => {
+        const id = anchor.getAttribute('href');
+        if (id === '#') return;
+        const target = document.querySelector(id);
+        if (target) {
+          e.preventDefault();
+          const offset = 80;
+          const y = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
